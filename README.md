@@ -1,6 +1,6 @@
 # Website Toko Cat Utama
 
-Repository front-end Website Toko Cat Utama. Implementasi saat ini mencakup Homepage beserta Header dan Footer yang digunakan oleh halaman tersebut.
+Repository front-end Website Toko Cat Utama. Implementasi saat ini mencakup Homepage, halaman Tentang Kami, serta Header dan Footer bersama.
 
 ## Teknologi
 
@@ -43,10 +43,13 @@ pnpm start
 
 ```text
 public/
-└── brand/                 Aset logo dan maskot resmi
+├── brand/                 Aset logo dan maskot resmi
+├── categories/            Gambar kategori produk Homepage
+└── images/about/          Foto resmi halaman Tentang Kami
 src/
 ├── app/                   App Router, metadata, dan global styling
 ├── components/
+│   ├── about/             Section khusus halaman Tentang Kami
 │   ├── home/              Section khusus Homepage
 │   ├── layout/            Header, pencarian, dan Footer
 │   └── ui/                Komponen UI reusable
@@ -69,12 +72,17 @@ Homepage terdiri dari:
 
 Header dan Footer merupakan komponen layout bersama. Search pada Header mencari kategori produk, lokasi cabang, dan halaman Merek dari data yang tersedia.
 
+## Tentang Kami
+
+Route `/tentang-kami` menjelaskan sejarah perusahaan sejak 1955, visi, misi, nilai perusahaan, tim, pengalaman di dalam toko, kegiatan sosial, serta ringkasan fakta perusahaan. Copy dan metadata gambar halaman disimpan di `src/data/about.ts`, sedangkan section modular berada di `src/components/about/`.
+
 ## Data dan Aset
 
 - Data navigasi, kategori, proyek, dan pencarian: `src/data/site.ts`
 - Data nama cabang dan alamat kantor pusat: `src/data/branches.ts`
 - Logo, maskot, dan gambar hero: `public/brand/`
 - Gambar kategori produk: `public/categories/`
+- Foto halaman Tentang Kami: `public/images/about/`
 
 Gunakan hanya aset resmi dan pertahankan proporsi serta clear space logo. Jangan mengubah warna, menambahkan shadow/outline, atau meregangkan logo.
 
@@ -86,7 +94,7 @@ Gunakan hanya aset resmi dan pertahankan proporsi serta clear space logo. Jangan
 4. Perbarui navigasi di `src/data/site.ts` bila diperlukan.
 5. Jalankan seluruh pemeriksaan kualitas sebelum commit.
 
-Route navigasi selain `/` sudah dicantumkan sesuai SRS, tetapi halamannya belum termasuk dalam ruang lingkup implementasi Homepage ini.
+Route navigasi selain `/` dan `/tentang-kami` sudah dicantumkan sesuai SRS, tetapi belum diimplementasikan.
 
 ## Deployment
 
