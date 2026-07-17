@@ -1,6 +1,6 @@
 # Website Toko Cat Utama
 
-Repository front-end Website Toko Cat Utama. Implementasi saat ini mencakup Homepage, halaman Tentang Kami, serta Header dan Footer bersama.
+Repository front-end Website Toko Cat Utama. Implementasi saat ini mencakup Homepage, halaman Tentang Kami, halaman Produk, serta Header dan Footer bersama.
 
 ## Teknologi
 
@@ -52,6 +52,7 @@ src/
 │   ├── about/             Section khusus halaman Tentang Kami
 │   ├── home/              Section khusus Homepage
 │   ├── layout/            Header, pencarian, dan Footer
+│   ├── products/          Section khusus halaman Produk
 │   └── ui/                Komponen UI reusable
 ├── data/                  Data statis situs dan cabang
 ├── styles/                Styling khusus halaman
@@ -76,6 +77,10 @@ Header dan Footer merupakan komponen layout bersama. Search pada Header mencari 
 
 Route `/tentang-kami` menjelaskan sejarah perusahaan sejak 1955, visi, misi, nilai perusahaan, tim, pengalaman di dalam toko, kegiatan sosial, serta ringkasan fakta perusahaan. Copy dan metadata gambar halaman disimpan di `src/data/about.ts`, sedangkan section modular berada di `src/components/about/`.
 
+## Produk
+
+Route `/produk` menjelaskan delapan kategori solusi pengecatan untuk rumah, bangunan komersial, proyek, dan industri. Deskripsi dan konfigurasi CTA disimpan di `src/data/products.ts`, sedangkan section modular berada di `src/components/products/`. Gambar kategori memakai aset shared di `public/categories/`.
+
 ## Data dan Aset
 
 - Data navigasi, kategori, proyek, dan pencarian: `src/data/site.ts`
@@ -94,7 +99,7 @@ Gunakan hanya aset resmi dan pertahankan proporsi serta clear space logo. Jangan
 4. Perbarui navigasi di `src/data/site.ts` bila diperlukan.
 5. Jalankan seluruh pemeriksaan kualitas sebelum commit.
 
-Route navigasi selain `/` dan `/tentang-kami` sudah dicantumkan sesuai SRS, tetapi belum diimplementasikan.
+Route navigasi selain `/`, `/tentang-kami`, dan `/produk` sudah dicantumkan sesuai SRS, tetapi belum diimplementasikan.
 
 ## Deployment
 
