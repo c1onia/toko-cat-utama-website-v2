@@ -1,6 +1,6 @@
 # Website Toko Cat Utama
 
-Repository front-end Website Toko Cat Utama. Implementasi saat ini mencakup Homepage, halaman Tentang Kami, halaman Produk, serta Header dan Footer bersama.
+Repository front-end Website Toko Cat Utama. Implementasi saat ini mencakup Homepage, halaman Tentang Kami, halaman Produk, halaman Merek, serta Header dan Footer bersama.
 
 ## Teknologi
 
@@ -50,6 +50,7 @@ src/
 ├── app/                   App Router, metadata, dan global styling
 ├── components/
 │   ├── about/             Section khusus halaman Tentang Kami
+│   ├── brands/            Section khusus halaman Merek
 │   ├── home/              Section khusus Homepage
 │   ├── layout/            Header, pencarian, dan Footer
 │   ├── products/          Section khusus halaman Produk
@@ -81,6 +82,10 @@ Route `/tentang-kami` menjelaskan sejarah perusahaan sejak 1955, visi, misi, nil
 
 Route `/produk` menjelaskan delapan kategori solusi pengecatan untuk rumah, bangunan komersial, proyek, dan industri. Deskripsi dan konfigurasi CTA disimpan di `src/data/products.ts`, sedangkan section modular berada di `src/components/products/`. Gambar kategori memakai aset shared di `public/categories/`.
 
+## Merek
+
+Route `/merek` menampilkan 16 merek cat dan material bangunan dalam satu portofolio terpadu. Urutan merek, metadata logo, dan konfigurasi CTA disimpan di `src/data/brands.ts`, section modular berada di `src/components/brands/`, dan aset logo berada di `public/images/brands/`.
+
 ## Data dan Aset
 
 - Data navigasi, kategori, proyek, dan pencarian: `src/data/site.ts`
@@ -99,7 +104,7 @@ Gunakan hanya aset resmi dan pertahankan proporsi serta clear space logo. Jangan
 4. Perbarui navigasi di `src/data/site.ts` bila diperlukan.
 5. Jalankan seluruh pemeriksaan kualitas sebelum commit.
 
-Route navigasi selain `/`, `/tentang-kami`, dan `/produk` sudah dicantumkan sesuai SRS, tetapi belum diimplementasikan.
+Route navigasi selain `/`, `/tentang-kami`, `/produk`, dan `/merek` sudah dicantumkan sesuai SRS, tetapi belum diimplementasikan.
 
 ## Deployment
 
