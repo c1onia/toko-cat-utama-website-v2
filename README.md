@@ -1,6 +1,6 @@
 # Website Toko Cat Utama
 
-Repository front-end Website Toko Cat Utama. Implementasi saat ini mencakup Homepage, halaman Tentang Kami, halaman Produk, halaman Merek, halaman Loyalty Member, halaman Lokasi Toko, serta Header dan Footer bersama.
+Repository front-end Website Toko Cat Utama. Implementasi saat ini mencakup Homepage, halaman Tentang Kami, halaman Produk, halaman Merek, halaman Loyalty Member, halaman Lokasi Toko, halaman Kontak Kami, serta Header dan Footer bersama.
 
 ## Teknologi
 
@@ -55,6 +55,7 @@ src/
 ├── components/
 │   ├── about/             Section khusus halaman Tentang Kami
 │   ├── brands/            Section khusus halaman Merek
+│   ├── contact/           Section khusus halaman Kontak Kami
 │   ├── home/              Section khusus Homepage
 │   ├── layout/            Header, pencarian, dan Footer
 │   ├── loyalty/           Section khusus halaman Loyalty Member
@@ -109,11 +110,16 @@ Untuk menambah cabang baru:
 
 Untuk mengganti foto cabang, replace file di `public/images/branches/` tanpa mengubah proporsi visual utama. Foto cabang pada card memakai rasio 16:9 dan `object-fit: cover`.
 
+## Kontak Kami
+
+Route `/kontak` menampilkan hero kontak, kartu informasi Kantor Pusat, WhatsApp Customer Service, Jam Operasional, Google Map kantor pusat, dan form kontak UI-only. Data kontak halaman disimpan di `src/data/contact.ts` dan menggunakan ulang `src/data/opening-hours.ts` untuk jam operasional. Section modular berada di `src/components/contact/`, sedangkan styling halaman berada di `src/styles/contact.css`.
+
 ## Data dan Aset
 
 - Data navigasi, kategori, proyek, dan pencarian: `src/data/site.ts`
 - Data cabang lengkap dan alamat kantor pusat: `src/data/branches.ts`
 - Data jam operasional cabang: `src/data/opening-hours.ts`
+- Data halaman Kontak Kami: `src/data/contact.ts`
 - Data program Loyalty Member: `src/data/loyalty.ts`
 - Logo, maskot, dan gambar hero: `public/brand/`
 - Gambar kategori produk: `public/categories/`
@@ -132,7 +138,7 @@ Gunakan hanya aset resmi dan pertahankan proporsi serta clear space logo. Jangan
 4. Perbarui navigasi di `src/data/site.ts` bila diperlukan.
 5. Jalankan seluruh pemeriksaan kualitas sebelum commit.
 
-Route navigasi selain `/`, `/tentang-kami`, `/produk`, `/merek`, `/loyalty-member`, dan `/lokasi-toko` sudah dicantumkan sesuai SRS, tetapi belum diimplementasikan.
+Route navigasi selain `/`, `/tentang-kami`, `/produk`, `/merek`, `/loyalty-member`, `/lokasi-toko`, dan `/kontak` sudah dicantumkan sesuai SRS, tetapi belum diimplementasikan.
 
 ## Deployment
 
