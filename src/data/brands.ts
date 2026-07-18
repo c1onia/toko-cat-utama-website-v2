@@ -1,5 +1,6 @@
 import { BadgeCheck, Boxes, MapPin, MessagesSquare } from "lucide-react";
 import { whatsappUrl } from "@/data/site";
+import { branches } from "@/data/branches";
 
 export const brandsHero = {
   title: "Merek Terpercaya",
@@ -51,7 +52,7 @@ export const brandTrust = {
       icon: MessagesSquare,
     },
     {
-      title: "18 Cabang",
+      title: `${branches.length} Cabang`,
       description: "Mudah ditemukan di berbagai kota di Jawa Tengah.",
       icon: MapPin,
     },

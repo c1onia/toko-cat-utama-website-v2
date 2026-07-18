@@ -1,3 +1,5 @@
+import { branches } from "@/data/branches";
+
 export const aboutHero = {
   title: "Tentang Kami",
   description:
@@ -40,7 +42,7 @@ export const historySection = {
     {
       year: "2026",
       description:
-        "Toko Cat Utama telah berkembang menjadi 18 cabang yang tersebar di Jawa Tengah.",
+        `Toko Cat Utama telah berkembang menjadi ${branches.length} cabang yang tersebar di Jawa Tengah.`,
     },
   ],
 };
@@ -110,7 +112,7 @@ export const trustSummary = {
   title: "Kepercayaan yang Terus Bertumbuh",
   facts: [
     "Berdiri sejak 1955",
-    "18 cabang",
+    `${branches.length} cabang`,
     "Produk lengkap",
     "Solusi untuk rumah, proyek, dan industri",
     "Pelayanan yang membantu dan terpercaya",

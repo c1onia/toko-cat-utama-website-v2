@@ -1,0 +1,84 @@
+.location-hero { padding-block: 32px 0; }
+.location-hero__stage { position: relative; min-height: 360px; display: flex; align-items: flex-end; overflow: hidden; padding: 48px; border-radius: 16px; isolation: isolate; }
+.location-hero__stage::after { position: absolute; z-index: -1; inset: 0; content: ""; background: linear-gradient(90deg, rgb(0 0 0 / 74%) 0%, rgb(0 0 0 / 48%) 44%, rgb(0 0 0 / 12%) 100%); }
+.location-hero__image { z-index: -2; object-fit: cover; object-position: center; }
+.location-hero__content { max-width: 680px; color: var(--white); }
+.location-hero__eyebrow,
+.location-hero__content h1 { color: var(--white); }
+.location-hero__content p:not(.eyebrow) { max-width: 620px; margin-bottom: 24px; font-size: 1.125rem; }
+
+.location-directory { padding-top: 56px; }
+.location-directory__intro { max-width: 780px; margin-bottom: 28px; }
+.location-directory__intro h2 { margin-bottom: 10px; }
+.location-directory__intro p:last-child { margin-bottom: 0; color: var(--muted); }
+
+.location-controls { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 20px; margin-bottom: 40px; padding: 24px; background: var(--white); border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 8px 22px rgb(31 41 55 / 5%); }
+.location-search-field,
+.location-filter { display: grid; gap: 8px; }
+.location-search-field label,
+.location-filter label { color: var(--text); font-size: 0.875rem; font-weight: 600; }
+.location-search-field input,
+.location-filter select { width: 100%; min-height: 48px; padding: 10px 14px; color: var(--text); background: var(--white); border: 1px solid var(--border); border-radius: 12px; }
+
+.branch-groups { display: grid; gap: 48px; }
+.branch-group { scroll-margin-top: calc(var(--header-height) + 24px); }
+.branch-group__heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 20px; }
+.branch-group__heading h2 { margin-bottom: 0; font-size: clamp(1.75rem, 3vw, 2.25rem); }
+.branch-group__heading p { margin-bottom: 0; color: var(--muted); font-size: 0.9375rem; font-weight: 600; }
+.branch-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+
+.branch-card { min-width: 0; display: flex; overflow: hidden; flex-direction: column; background: var(--white); border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 8px 22px rgb(31 41 55 / 5%); }
+.branch-card__image { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: color-mix(in srgb, var(--blue) 8%, var(--white)); }
+.branch-card__image img { width: 100%; height: 100%; object-fit: cover; }
+.branch-card__image--missing { display: flex; align-items: center; justify-content: center; padding: 24px; color: var(--muted); font-size: 0.9375rem; font-weight: 600; text-align: center; }
+.branch-card__content { display: flex; flex: 1; flex-direction: column; gap: 18px; padding: 22px; }
+.branch-card__city { display: inline-flex; width: fit-content; margin-bottom: 10px; padding: 4px 10px; color: var(--blue); background: color-mix(in srgb, var(--blue) 9%, var(--white)); border-radius: 999px; font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.branch-card h3 { margin-bottom: 12px; }
+.branch-card__address,
+.branch-card__phone { display: flex; gap: 10px; margin-bottom: 0; color: var(--muted); font-size: 0.9375rem; line-height: 1.5; }
+.branch-card__address svg,
+.branch-card__phone svg { width: 20px; height: 20px; flex: none; margin-top: 2px; color: var(--blue); stroke-width: 1.8; }
+
+.opening-hours,
+.tinting-machine { padding-top: 16px; border-top: 1px solid var(--border); }
+.opening-hours h4,
+.tinting-machine h4 { margin: 0 0 10px; color: var(--black); font-family: var(--font-outfit), sans-serif; font-size: 1rem; line-height: 1.3; }
+.opening-hours dl { display: grid; gap: 8px; margin: 0; }
+.opening-hours dl div { display: flex; justify-content: space-between; gap: 16px; }
+.opening-hours dt { color: var(--muted); font-size: 0.875rem; }
+.opening-hours dd { margin: 0; color: var(--text); font-size: 0.875rem; font-weight: 600; text-align: right; }
+.tinting-machine ul { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.tinting-machine li { padding: 5px 10px; color: var(--blue-dark); background: var(--light-gray); border: 1px solid var(--border); border-radius: 999px; font-size: 0.8125rem; font-weight: 600; }
+
+.branch-card__actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: auto; }
+.branch-card__actions .button { width: 100%; padding-inline: 10px; font-size: 0.875rem; text-align: center; }
+
+.location-empty { padding: 48px; background: var(--white); border: 1px solid var(--border); border-radius: 16px; text-align: center; }
+.location-empty h3 { margin-bottom: 8px; }
+.location-empty p { margin-bottom: 0; color: var(--muted); }
+
+@media (max-width: 1023px) {
+  .location-hero__stage { min-height: 300px; padding: 36px; }
+  .location-controls { grid-template-columns: 1fr; }
+  .branch-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 767px) {
+  .location-hero { padding-top: 24px; }
+  .location-hero__stage { min-height: 360px; padding: 24px; border-radius: 12px; }
+  .location-hero__stage::after { background: linear-gradient(0deg, rgb(0 0 0 / 78%) 0%, rgb(0 0 0 / 48%) 52%, rgb(0 0 0 / 12%) 100%); }
+  .location-hero__image { object-position: 52% center; }
+  .location-hero__content h1 { margin-bottom: 12px; font-size: 2rem; }
+  .location-hero__content p:not(.eyebrow) { margin-bottom: 20px; font-size: 0.9375rem; line-height: 1.5; }
+  .location-directory { padding-top: 40px; }
+  .location-controls { gap: 16px; margin-bottom: 32px; padding: 18px; border-radius: 12px; }
+  .branch-groups { gap: 36px; }
+  .branch-group__heading { align-items: flex-start; flex-direction: column; gap: 6px; }
+  .branch-grid { grid-template-columns: 1fr; gap: 18px; }
+  .branch-card { border-radius: 12px; }
+  .branch-card__content { padding: 20px; }
+  .opening-hours dl div { flex-direction: column; gap: 2px; }
+  .opening-hours dd { text-align: left; }
+  .branch-card__actions { grid-template-columns: 1fr; }
+  .location-empty { padding: 32px 20px; border-radius: 12px; }
+}

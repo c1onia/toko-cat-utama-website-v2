@@ -1,6 +1,6 @@
 # Website Toko Cat Utama
 
-Repository front-end Website Toko Cat Utama. Implementasi saat ini mencakup Homepage, halaman Tentang Kami, halaman Produk, halaman Merek, serta Header dan Footer bersama.
+Repository front-end Website Toko Cat Utama. Implementasi saat ini mencakup Homepage, halaman Tentang Kami, halaman Produk, halaman Merek, halaman Loyalty Member, halaman Lokasi Toko, serta Header dan Footer bersama.
 
 ## Teknologi
 
@@ -45,7 +45,11 @@ pnpm start
 public/
 ├── brand/                 Aset logo dan maskot resmi
 ├── categories/            Gambar kategori produk Homepage
-└── images/about/          Foto resmi halaman Tentang Kami
+└── images/
+    ├── about/             Foto resmi halaman Tentang Kami
+    ├── brands/            Logo resmi halaman Merek
+    ├── branches/          Foto cabang halaman Lokasi Toko
+    └── loyalty/           Aset maskot halaman Loyalty Member
 src/
 ├── app/                   App Router, metadata, dan global styling
 ├── components/
@@ -53,6 +57,8 @@ src/
 │   ├── brands/            Section khusus halaman Merek
 │   ├── home/              Section khusus Homepage
 │   ├── layout/            Header, pencarian, dan Footer
+│   ├── loyalty/           Section khusus halaman Loyalty Member
+│   ├── locations/         Section dan card khusus halaman Lokasi Toko
 │   ├── products/          Section khusus halaman Produk
 │   └── ui/                Komponen UI reusable
 ├── data/                  Data statis situs dan cabang
@@ -86,13 +92,35 @@ Route `/produk` menjelaskan delapan kategori solusi pengecatan untuk rumah, bang
 
 Route `/merek` menampilkan 16 merek cat dan material bangunan dalam satu portofolio terpadu. Urutan merek, metadata logo, dan konfigurasi CTA disimpan di `src/data/brands.ts`, section modular berada di `src/components/brands/`, dan aset logo berada di `public/images/brands/`.
 
+## Loyalty Member
+
+Route `/loyalty-member` menjelaskan program Loyalty Member Utama, cara registrasi, konversi poin, pilihan hadiah, periode program, FAQ, dan tautan unduh Utama Loyalty App. Semua informasi program yang dapat berubah, termasuk tanggal periode, nilai poin, daftar hadiah, FAQ, URL aplikasi, dan CTA, disimpan di `src/data/loyalty.ts`. Section modular berada di `src/components/loyalty/`, styling halaman berada di `src/styles/loyalty.css`, dan aset maskot berada di `public/images/loyalty/`.
+
+## Lokasi Toko
+
+Route `/lokasi-toko` membantu pelanggan mencari cabang berdasarkan nama cabang, kota, atau alamat. Data cabang lengkap disimpan di `src/data/branches.ts`, tipe cabang di `src/types/branch.ts`, dan jam operasional bersama di `src/data/opening-hours.ts`. Section modular berada di `src/components/locations/`, styling halaman berada di `src/styles/locations.css`, dan foto cabang berada di `public/images/branches/`.
+
+Untuk menambah cabang baru:
+
+1. Tambahkan data cabang ke `src/data/branches.ts` sesuai tipe `Branch`.
+2. Simpan foto cabang di `public/images/branches/` dengan nama file sesuai slug, misalnya `setiabudi.jpg`.
+3. Isi field `image` dengan path publik, misalnya `/images/branches/setiabudi.jpg`.
+4. Jika Google Maps, WhatsApp, atau mesin tinting tidak tersedia, kosongkan field terkait agar tombol atau section otomatis disembunyikan.
+
+Untuk mengganti foto cabang, replace file di `public/images/branches/` tanpa mengubah proporsi visual utama. Foto cabang pada card memakai rasio 16:9 dan `object-fit: cover`.
+
 ## Data dan Aset
 
 - Data navigasi, kategori, proyek, dan pencarian: `src/data/site.ts`
-- Data nama cabang dan alamat kantor pusat: `src/data/branches.ts`
+- Data cabang lengkap dan alamat kantor pusat: `src/data/branches.ts`
+- Data jam operasional cabang: `src/data/opening-hours.ts`
+- Data program Loyalty Member: `src/data/loyalty.ts`
 - Logo, maskot, dan gambar hero: `public/brand/`
 - Gambar kategori produk: `public/categories/`
 - Foto halaman Tentang Kami: `public/images/about/`
+- Logo halaman Merek: `public/images/brands/`
+- Foto cabang halaman Lokasi Toko: `public/images/branches/`
+- Maskot halaman Loyalty Member: `public/images/loyalty/`
 
 Gunakan hanya aset resmi dan pertahankan proporsi serta clear space logo. Jangan mengubah warna, menambahkan shadow/outline, atau meregangkan logo.
 
@@ -104,7 +132,7 @@ Gunakan hanya aset resmi dan pertahankan proporsi serta clear space logo. Jangan
 4. Perbarui navigasi di `src/data/site.ts` bila diperlukan.
 5. Jalankan seluruh pemeriksaan kualitas sebelum commit.
 
-Route navigasi selain `/`, `/tentang-kami`, `/produk`, dan `/merek` sudah dicantumkan sesuai SRS, tetapi belum diimplementasikan.
+Route navigasi selain `/`, `/tentang-kami`, `/produk`, `/merek`, `/loyalty-member`, dan `/lokasi-toko` sudah dicantumkan sesuai SRS, tetapi belum diimplementasikan.
 
 ## Deployment
 

@@ -1,16 +1,17 @@
 import { Building2, MapPin } from "lucide-react";
 import { ActionLink } from "@/components/ui/action-link";
+import { branches } from "@/data/branches";
 
 export function LocationSection() {
   return (
     <section className="section location" id="lokasi-toko" aria-labelledby="location-title">
       <div className="container location__grid">
         <div className="location__content">
-          <p className="eyebrow">18 Cabang</p>
+          <p className="eyebrow">{branches.length} Cabang</p>
           <h2 id="location-title">Lokasi Toko</h2>
           <div className="location__count">
             <Building2 aria-hidden="true" />
-            <strong>18</strong>
+            <strong>{branches.length}</strong>
             <span>cabang di Jawa Tengah</span>
           </div>
           <ActionLink href="/lokasi-toko">

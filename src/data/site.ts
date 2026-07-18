@@ -5,7 +5,7 @@ import {
   Sparkles,
   Truck,
 } from "lucide-react";
-import { branches } from "@/data/branches";
+import { branchNames } from "@/data/branches";
 import type { CategoryItem, FeatureItem, NavigationItem, SearchItem } from "@/types/site";
 
 export const whatsappNumber = "6281266925000";
@@ -90,7 +90,7 @@ const categorySearch: SearchItem[] = categories.map((category) => ({
   keywords: `${category.title} produk cat coating waterproofing`,
 }));
 
-const branchSearch: SearchItem[] = branches.map((branch) => ({
+const branchSearch: SearchItem[] = branchNames.map((branch) => ({
   label: `Toko ${branch}`,
   type: "Lokasi",
   href: "/lokasi-toko",
