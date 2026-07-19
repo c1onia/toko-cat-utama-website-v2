@@ -15,6 +15,7 @@ export const navigation: NavigationItem[] = [
   { label: "Beranda", href: "/" },
   { label: "Tentang Kami", href: "/tentang-kami" },
   { label: "Produk", href: "/produk" },
+  { label: "Kalkulator Cat", href: "/kalkulator-cat" },
   { label: "Merek", href: "/merek" },
   { label: "Loyalty Member", href: "/loyalty-member" },
   { label: "Galeri Proyek", href: "/galeri-proyek" },
@@ -101,4 +102,10 @@ export const searchItems: SearchItem[] = [
   ...categorySearch,
   ...branchSearch,
   { label: "Halaman Merek", type: "Halaman", href: "/merek", keywords: "merek brand" },
+  {
+    label: "Kalkulator Cat",
+    type: "Halaman",
+    href: "/kalkulator-cat",
+    keywords: "kalkulator cat tembok kebutuhan galon pail ruangan dinding",
+  },
 ];

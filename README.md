@@ -1,6 +1,6 @@
 # Website Toko Cat Utama
 
-Repository front-end Website Toko Cat Utama. Implementasi saat ini mencakup Homepage, halaman Tentang Kami, halaman Produk, halaman Merek, halaman Loyalty Member, halaman Lokasi Toko, halaman Kontak Kami, halaman Galeri Proyek, serta Header dan Footer bersama.
+Repository front-end Website Toko Cat Utama. Implementasi saat ini mencakup Homepage, halaman Tentang Kami, halaman Produk, halaman Kalkulator Cat, halaman Merek, halaman Loyalty Member, halaman Lokasi Toko, halaman Kontak Kami, halaman Galeri Proyek, serta Header dan Footer bersama.
 
 ## Teknologi
 
@@ -61,6 +61,7 @@ src/
 │   ├── layout/            Header, pencarian, dan Footer
 │   ├── loyalty/           Section khusus halaman Loyalty Member
 │   ├── locations/         Section dan card khusus halaman Lokasi Toko
+│   ├── paint-calculator/  Komponen modular halaman Kalkulator Cat
 │   ├── products/          Section khusus halaman Produk
 │   ├── projects/          Section dan card khusus halaman Galeri Proyek
 │   └── ui/                Komponen UI reusable
@@ -90,6 +91,27 @@ Route `/tentang-kami` menjelaskan sejarah perusahaan sejak 1955, visi, misi, nil
 ## Produk
 
 Route `/produk` menjelaskan delapan kategori solusi pengecatan untuk rumah, bangunan komersial, proyek, dan industri. Deskripsi dan konfigurasi CTA disimpan di `src/data/products.ts`, sedangkan section modular berada di `src/components/products/`. Gambar kategori memakai aset shared di `public/categories/`.
+
+## Kalkulator Cat
+
+Route `/kalkulator-cat` menyediakan Kalkulator Cat Tembok v1 untuk menghitung estimasi kebutuhan cat tembok pada satu bidang dinding atau satu ruangan. Kalkulator ini hanya berlaku untuk cat tembok; perhitungan produk lain seperti waterproofing, floor coating, protective coating, marine paint, atau roof paint belum termasuk dalam versi ini.
+
+Konfigurasi asumsi berada di `src/data/paintCalculator.ts`, sedangkan fungsi kalkulasi berada di `src/lib/paintCalculator.ts`. Komponen UI modular berada di `src/components/paint-calculator/` dan styling halaman berada di `src/styles/paint-calculator.css`.
+
+Asumsi awal:
+
+- Semua estimasi memakai asumsi tetap 2 lapis pengecatan dan tidak menyediakan selector jumlah lapisan.
+- Premium: 1 galon 2.5 L menutup ±15 m² untuk 2 lapis, 1 pail 20 L = 8 galon.
+- Menengah: 1 galon 5 kg menutup ±12–15 m² untuk 2 lapis; kalkulasi memakai asumsi konservatif 12 m² per galon, 1 pail 25 kg = 5 galon.
+- Formula kebutuhan galon: luas yang dicat ÷ daya sebar per galon untuk 2 lapis.
+- Hasil selalu dibulatkan ke atas untuk rekomendasi pembelian.
+- Bukaan pintu dan jendela hanya dikurangi jika user menambahkannya.
+- Luas ruangan dihitung dari keliling ruangan × tinggi ruangan, tanpa plafon dan lantai.
+
+Aturan konversi kemasan:
+
+- Premium: 8 galon = 1 pail. Contoh 9 galon menjadi 1 pail + 1 galon.
+- Menengah: 5 galon = 1 pail. Contoh 6 galon menjadi 1 pail + 1 galon.
 
 ## Merek
 
@@ -123,6 +145,7 @@ Route `/galeri-proyek` menampilkan portofolio proyek terdokumentasi dan daftar p
 ## Data dan Aset
 
 - Data navigasi, kategori Homepage, dan pencarian: `src/data/site.ts`
+- Data konfigurasi Kalkulator Cat: `src/data/paintCalculator.ts`
 - Data cabang lengkap dan alamat kantor pusat: `src/data/branches.ts`
 - Data jam operasional cabang: `src/data/opening-hours.ts`
 - Data halaman Kontak Kami: `src/data/contact.ts`
@@ -146,7 +169,7 @@ Gunakan hanya aset resmi dan pertahankan proporsi serta clear space logo. Jangan
 4. Perbarui navigasi di `src/data/site.ts` bila diperlukan.
 5. Jalankan seluruh pemeriksaan kualitas sebelum commit.
 
-Route navigasi selain `/`, `/tentang-kami`, `/produk`, `/merek`, `/loyalty-member`, `/lokasi-toko`, `/kontak`, dan `/galeri-proyek` sudah dicantumkan sesuai SRS, tetapi belum diimplementasikan.
+Route navigasi selain `/`, `/tentang-kami`, `/produk`, `/kalkulator-cat`, `/merek`, `/loyalty-member`, `/lokasi-toko`, `/kontak`, dan `/galeri-proyek` sudah dicantumkan sesuai SRS, tetapi belum diimplementasikan.
 
 ## Deployment
 
