@@ -19,8 +19,9 @@ export const contactHero = {
 export const headOfficeContact = {
   title: "Kantor Pusat",
   address: headOfficeAddress,
-  phone: "+62 812-6692-5000",
-  phoneHref: "tel:+6281266925000",
+  whatsappLabel: "WhatsApp",
+  whatsappNumber: "+62 812-6692-5000",
+  whatsappHref: whatsappUrl,
   email: "info@tokocatutama.com",
   emailHref: "mailto:info@tokocatutama.com",
   mapTitle: "Peta Kantor Pusat Toko Cat Utama",
@@ -30,6 +31,7 @@ export const headOfficeContact = {
 
 export const customerServiceContact = {
   title: "WhatsApp Customer Service",
+  whatsappLabel: "WhatsApp",
   whatsappNumber: "+62 812-6692-5000",
   whatsappRawNumber: whatsappNumber,
   whatsappHref: whatsappUrl,

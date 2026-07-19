@@ -1,4 +1,4 @@
-import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Clock, Mail, MapPin, MessageCircle } from "lucide-react";
 import { ActionLink } from "@/components/ui/action-link";
 import {
   contactOpeningHours,
@@ -26,9 +26,12 @@ export function ContactInfoSection() {
                 <MapPin aria-hidden="true" />
                 <span>{headOfficeContact.address}</span>
               </p>
-              <a href={headOfficeContact.phoneHref}>
-                <Phone aria-hidden="true" />
-                <span>{headOfficeContact.phone}</span>
+              <a href={headOfficeContact.whatsappHref} target="_blank" rel="noreferrer">
+                <MessageCircle aria-hidden="true" />
+                <span>
+                  <span className="contact-card__label">{headOfficeContact.whatsappLabel}</span>
+                  {headOfficeContact.whatsappNumber}
+                </span>
               </a>
               <a href={headOfficeContact.emailHref}>
                 <Mail aria-hidden="true" />
@@ -45,7 +48,10 @@ export function ContactInfoSection() {
             <div className="contact-card__details">
               <a href={customerServiceContact.whatsappHref} target="_blank" rel="noreferrer">
                 <MessageCircle aria-hidden="true" />
-                <span>{customerServiceContact.whatsappNumber}</span>
+                <span>
+                  <span className="contact-card__label">{customerServiceContact.whatsappLabel}</span>
+                  {customerServiceContact.whatsappNumber}
+                </span>
               </a>
             </div>
             <ActionLink href={customerServiceContact.whatsappHref} external>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Mail, MapPin, MessageCircle } from "lucide-react";
 import { headOfficeAddress } from "@/data/branches";
 import { navigation, whatsappUrl } from "@/data/site";
 
@@ -26,8 +26,10 @@ export function SiteFooter() {
 
         <div className="site-footer__contact">
           <h2>Kontak</h2>
-          <a href={whatsappUrl} target="_blank" rel="noreferrer"><MessageCircle aria-hidden="true" />+62 812-6692-5000</a>
-          <a href="tel:+6281266925000"><Phone aria-hidden="true" />+62 812-6692-5000</a>
+          <a href={whatsappUrl} target="_blank" rel="noreferrer">
+            <MessageCircle aria-hidden="true" />
+            <span>WhatsApp<br />+62 812-6692-5000</span>
+          </a>
           <a href="mailto:info@tokocatutama.com"><Mail aria-hidden="true" />info@tokocatutama.com</a>
           <p><MapPin aria-hidden="true" />{headOfficeAddress}</p>
           <a href="https://www.instagram.com/utamapaint" target="_blank" rel="noreferrer">Instagram @utamapaint</a>

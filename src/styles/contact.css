@@ -126,6 +126,12 @@
   color: var(--blue);
 }
 
+.contact-card__label {
+  display: block;
+  color: var(--text);
+  font-weight: 600;
+}
+
 .contact-card__details svg {
   width: 18px;
   height: 18px;

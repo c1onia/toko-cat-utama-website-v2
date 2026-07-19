@@ -8,7 +8,7 @@ import "@/styles/contact.css";
 export const metadata: Metadata = {
   title: "Kontak Kami | Toko Cat Utama",
   description:
-    "Hubungi Toko Cat Utama untuk kebutuhan pengecatan rumah, bisnis, maupun proyek Anda melalui WhatsApp, telepon, email, atau kunjungi kantor pusat.",
+    "Hubungi Toko Cat Utama untuk kebutuhan pengecatan rumah, bisnis, maupun proyek Anda melalui WhatsApp, email, atau kunjungi kantor pusat.",
 };
 
 export default function ContactPage() {
