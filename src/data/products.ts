@@ -1,4 +1,5 @@
 import { categories, whatsappUrl } from "@/data/site";
+import productBanner from "../../public/brand/product-banner.png";
 
 const categoryDescriptions: Record<string, string> = {
   "cat-dekoratif":
@@ -23,8 +24,9 @@ export const productsHero = {
   title: "Produk",
   description:
     "Solusi pengecatan lengkap untuk rumah, proyek, dan kebutuhan industri. Temukan kategori produk yang sesuai dengan kebutuhan Anda.",
-  image: "/categories/cat-dekoratif.png",
-  imageAlt: "Roller mengaplikasikan cat dekoratif berwarna biru muda",
+  image: productBanner,
+  imageAlt:
+    "Kolase solusi pengecatan untuk dinding, kapal, struktur baja, lantai, waterproofing, otomotif, semen instan, dan perlengkapan pengecatan",
 };
 
 export const productsIntroduction = {

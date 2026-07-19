@@ -1,6 +1,6 @@
 # Website Toko Cat Utama
 
-Repository front-end Website Toko Cat Utama. Implementasi saat ini mencakup Homepage, halaman Tentang Kami, halaman Produk, halaman Merek, halaman Loyalty Member, halaman Lokasi Toko, halaman Kontak Kami, serta Header dan Footer bersama.
+Repository front-end Website Toko Cat Utama. Implementasi saat ini mencakup Homepage, halaman Tentang Kami, halaman Produk, halaman Merek, halaman Loyalty Member, halaman Lokasi Toko, halaman Kontak Kami, halaman Galeri Proyek, serta Header dan Footer bersama.
 
 ## Teknologi
 
@@ -49,7 +49,8 @@ public/
     ├── about/             Foto resmi halaman Tentang Kami
     ├── brands/            Logo resmi halaman Merek
     ├── branches/          Foto cabang halaman Lokasi Toko
-    └── loyalty/           Aset maskot halaman Loyalty Member
+    ├── loyalty/           Aset maskot halaman Loyalty Member
+    └── projects/          Foto proyek halaman Galeri Proyek
 src/
 ├── app/                   App Router, metadata, dan global styling
 ├── components/
@@ -61,6 +62,7 @@ src/
 │   ├── loyalty/           Section khusus halaman Loyalty Member
 │   ├── locations/         Section dan card khusus halaman Lokasi Toko
 │   ├── products/          Section khusus halaman Produk
+│   ├── projects/          Section dan card khusus halaman Galeri Proyek
 │   └── ui/                Komponen UI reusable
 ├── data/                  Data statis situs dan cabang
 ├── styles/                Styling khusus halaman
@@ -114,19 +116,25 @@ Untuk mengganti foto cabang, replace file di `public/images/branches/` tanpa men
 
 Route `/kontak` menampilkan hero kontak, kartu informasi Kantor Pusat, WhatsApp Customer Service, Jam Operasional, Google Map kantor pusat, dan form kontak UI-only. Data kontak halaman disimpan di `src/data/contact.ts` dan menggunakan ulang `src/data/opening-hours.ts` untuk jam operasional. Section modular berada di `src/components/contact/`, sedangkan styling halaman berada di `src/styles/contact.css`.
 
+## Galeri Proyek
+
+Route `/galeri-proyek` menampilkan portofolio proyek terdokumentasi dan daftar pengalaman proyek lainnya. Data proyek disimpan di `src/data/projects.ts`, section modular berada di `src/components/projects/`, styling halaman berada di `src/styles/projects.css`, dan foto proyek berada di `public/images/projects/`.
+
 ## Data dan Aset
 
-- Data navigasi, kategori, proyek, dan pencarian: `src/data/site.ts`
+- Data navigasi, kategori Homepage, dan pencarian: `src/data/site.ts`
 - Data cabang lengkap dan alamat kantor pusat: `src/data/branches.ts`
 - Data jam operasional cabang: `src/data/opening-hours.ts`
 - Data halaman Kontak Kami: `src/data/contact.ts`
 - Data program Loyalty Member: `src/data/loyalty.ts`
+- Data halaman Galeri Proyek: `src/data/projects.ts`
 - Logo, maskot, dan gambar hero: `public/brand/`
 - Gambar kategori produk: `public/categories/`
 - Foto halaman Tentang Kami: `public/images/about/`
 - Logo halaman Merek: `public/images/brands/`
 - Foto cabang halaman Lokasi Toko: `public/images/branches/`
 - Maskot halaman Loyalty Member: `public/images/loyalty/`
+- Foto halaman Galeri Proyek: `public/images/projects/`
 
 Gunakan hanya aset resmi dan pertahankan proporsi serta clear space logo. Jangan mengubah warna, menambahkan shadow/outline, atau meregangkan logo.
 
@@ -138,7 +146,7 @@ Gunakan hanya aset resmi dan pertahankan proporsi serta clear space logo. Jangan
 4. Perbarui navigasi di `src/data/site.ts` bila diperlukan.
 5. Jalankan seluruh pemeriksaan kualitas sebelum commit.
 
-Route navigasi selain `/`, `/tentang-kami`, `/produk`, `/merek`, `/loyalty-member`, `/lokasi-toko`, dan `/kontak` sudah dicantumkan sesuai SRS, tetapi belum diimplementasikan.
+Route navigasi selain `/`, `/tentang-kami`, `/produk`, `/merek`, `/loyalty-member`, `/lokasi-toko`, `/kontak`, dan `/galeri-proyek` sudah dicantumkan sesuai SRS, tetapi belum diimplementasikan.
 
 ## Deployment
 

@@ -1,8 +1,8 @@
 .product-hero { padding-block: 32px 0; }
-.product-hero__stage { position: relative; min-height: 250px; display: flex; align-items: flex-end; overflow: hidden; padding: 36px 40px; border-radius: 16px; isolation: isolate; }
-.product-hero__stage::after { position: absolute; z-index: -1; inset: 0; content: ""; background: linear-gradient(0deg, rgb(0 0 0 / 72%) 0%, rgb(0 0 0 / 24%) 58%, rgb(0 0 0 / 4%) 100%); }
-.product-hero__image { z-index: -2; object-fit: cover; object-position: center; }
-.product-hero__content { max-width: 720px; color: var(--white); }
+.product-hero__stage { position: relative; min-height: 268px; display: flex; align-items: flex-end; overflow: hidden; padding: 40px; border-radius: 24px; isolation: isolate; }
+.product-hero__stage::after { position: absolute; z-index: -1; inset: 0; content: ""; background: linear-gradient(90deg, rgb(0 0 0 / 70%) 0%, rgb(0 0 0 / 42%) 34%, rgb(0 0 0 / 8%) 68%), linear-gradient(0deg, rgb(0 0 0 / 48%) 0%, rgb(0 0 0 / 8%) 62%); }
+.product-hero__image { z-index: -2; object-fit: cover; object-position: center 52%; }
+.product-hero__content { max-width: 680px; color: var(--white); }
 .product-hero__content h1 { color: var(--white); }
 .product-hero__content p { margin-bottom: 0; font-size: 1.125rem; }
 
@@ -38,7 +38,7 @@
 .product-cta__actions { display: flex; flex: none; flex-wrap: wrap; gap: 14px; }
 
 @media (max-width: 1023px) {
-  .product-hero__stage { min-height: 230px; padding: 32px; }
+  .product-hero__stage { min-height: 232px; padding: 32px; border-radius: 20px; }
   .product-category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .product-help { gap: 32px; padding: 40px; }
   .product-cta__inner { align-items: flex-start; flex-direction: column; padding: 40px; }
@@ -46,8 +46,9 @@
 
 @media (max-width: 767px) {
   .product-hero { padding-block: 24px 0; }
-  .product-hero__stage { min-height: 210px; padding: 20px; border-radius: 12px; }
-  .product-hero__image { object-position: 48% center; }
+  .product-hero__stage { min-height: 204px; padding: 20px; border-radius: 16px; }
+  .product-hero__stage::after { background: linear-gradient(90deg, rgb(0 0 0 / 72%) 0%, rgb(0 0 0 / 44%) 48%, rgb(0 0 0 / 12%) 100%), linear-gradient(0deg, rgb(0 0 0 / 42%) 0%, rgb(0 0 0 / 8%) 62%); }
+  .product-hero__image { object-position: 45% center; }
   .product-hero__content h1 { margin-bottom: 8px; font-size: 2rem; }
   .product-hero__content p { font-size: 0.9375rem; line-height: 1.5; }
   .product-categories { padding-top: 32px; }
