@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Mail, MapPin, MessageCircle } from "lucide-react";
 import { headOfficeAddress } from "@/data/branches";
-import { navigation, whatsappUrl } from "@/data/site";
+import { footerNavigation, whatsappUrl } from "@/data/site";
 
 export function SiteFooter() {
   return (
@@ -18,7 +18,7 @@ export function SiteFooter() {
         <div>
           <h2>Menu Cepat</h2>
           <nav aria-label="Navigasi footer">
-            {navigation.map((item) => (
+            {footerNavigation.map((item) => (
               <Link key={item.href} href={item.href}>{item.label}</Link>
             ))}
           </nav>

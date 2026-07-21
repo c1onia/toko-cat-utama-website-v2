@@ -5,13 +5,20 @@ import {
   Sparkles,
   Truck,
 } from "lucide-react";
+import { brandList } from "@/data/brand-list";
 import { branchNames } from "@/data/branches";
-import type { CategoryItem, FeatureItem, NavigationItem, SearchItem } from "@/types/site";
+import type {
+  CategoryItem,
+  FeatureItem,
+  NavigationItem,
+  PrimaryNavigationItem,
+  SearchItem,
+} from "@/types/site";
 
 export const whatsappNumber = "6281266925000";
 export const whatsappUrl = `https://wa.me/${whatsappNumber}`;
 
-export const navigation: NavigationItem[] = [
+export const footerNavigation: NavigationItem[] = [
   { label: "Beranda", href: "/" },
   { label: "Tentang Kami", href: "/tentang-kami" },
   { label: "Produk", href: "/produk" },
@@ -79,6 +86,89 @@ export const categories: CategoryItem[] = [
     slug: "perlengkapan-pengecatan",
     image: "/categories/perlengkapan-pengecatan.png",
     imageAlt: "Roller, kuas, ember, dan perlengkapan pengecatan",
+  },
+];
+
+const productNavigationCategories = [
+  "cat-dekoratif",
+  "cat-protective",
+  "marine-paint",
+  "floor-coating",
+  "waterproofing",
+  "semen-instan",
+  "perlengkapan-pengecatan",
+];
+
+export const navigation: PrimaryNavigationItem[] = [
+  { label: "Beranda", href: "/" },
+  {
+    label: "Tentang Kami",
+    href: "/tentang-kami",
+    sections: [
+      {
+        title: "Tentang Kami",
+        items: [
+          { label: "Tentang Toko Cat Utama", href: "/tentang-kami" },
+          { label: "Mengapa Memilih Kami", href: "/#mengapa-kami" },
+          { label: "Loyalty", href: "/loyalty-member" },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Produk",
+    href: "/produk",
+    sections: [
+      {
+        title: "Kategori",
+        items: [
+          { label: "Semua Produk", href: "/produk" },
+          ...categories
+            .filter((category) => productNavigationCategories.includes(category.slug))
+            .map((category) => ({
+              label: category.title,
+              href: `/produk#${category.slug}`,
+            })),
+        ],
+      },
+      {
+        title: "Merek",
+        items: [
+          { label: "Semua Merek", href: "/merek" },
+          ...brandList.map((brand) => ({
+            label: brand.name,
+            href: "/merek#brand-portfolio-title",
+          })),
+        ],
+      },
+    ],
+  },
+  {
+    label: "Solusi",
+    href: "/kalkulator-cat",
+    sections: [
+      {
+        title: "Solusi",
+        items: [
+          { label: "Kalkulator Cat", href: "/kalkulator-cat" },
+          { label: "Galeri Proyek", href: "/galeri-proyek" },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Cabang & Kontak",
+    href: "/lokasi-toko",
+    sections: [
+      {
+        title: "Cabang & Kontak",
+        items: [
+          { label: "Lokasi Cabang", href: "/lokasi-toko" },
+          { label: "Hubungi Kami", href: "/kontak" },
+          { label: "WhatsApp", href: whatsappUrl },
+        ],
+      },
+    ],
   },
 ];
 

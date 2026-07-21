@@ -5,6 +5,15 @@ export type NavigationItem = {
   href: string;
 };
 
+export type NavigationSection = {
+  title: string;
+  items: NavigationItem[];
+};
+
+export type PrimaryNavigationItem = NavigationItem & {
+  sections?: NavigationSection[];
+};
+
 export type FeatureItem = {
   title: string;
   icon: LucideIcon;

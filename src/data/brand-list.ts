@@ -1,0 +1,18 @@
+export const brandList = [
+  { name: "Dulux", image: "/images/brands/dulux.jpg", width: 941, height: 941 },
+  { name: "Mowilex", image: "/images/brands/mowilex.png", width: 447, height: 447 },
+  { name: "Avian", image: "/images/brands/avian.jpg", width: 400, height: 400 },
+  { name: "Nippon Paint", image: "/images/brands/nippon-paint.png", width: 447, height: 447 },
+  { name: "Jotun", image: "/images/brands/jotun.jpg", width: 900, height: 900 },
+  { name: "TOA Paint", image: "/images/brands/toa-paint.png", width: 447, height: 447 },
+  { name: "Propan", image: "/images/brands/propan.jpg", width: 447, height: 447 },
+  { name: "Kansai Paint", image: "/images/brands/kansai-paint.png", width: 447, height: 447 },
+  { name: "Aquaproof", image: "/images/brands/aquaproof.png", width: 447, height: 447 },
+  { name: "Catylac", image: "/images/brands/catylac.png", width: 300, height: 300 },
+  { name: "Spectrum", image: "/images/brands/spectrum.png", width: 447, height: 447 },
+  { name: "Warna Agung", image: "/images/brands/warna-agung.png", width: 447, height: 447 },
+  { name: "Kem-Tone", image: "/images/brands/kem-tone.png", width: 2156, height: 1724 },
+  { name: "Altex", image: "/images/brands/altex.jpg", width: 447, height: 447 },
+  { name: "Mortar Utama", image: "/images/brands/mortar-utama.jpg", width: 900, height: 900 },
+  { name: "Bital", image: "/images/brands/bital.jpg", width: 1024, height: 1024 },
+];

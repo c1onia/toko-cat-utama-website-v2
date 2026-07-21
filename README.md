@@ -82,7 +82,7 @@ Homepage terdiri dari:
 4. Lokasi Toko
 5. Hubungi Kami
 
-Header dan Footer merupakan komponen layout bersama. Search pada Header mencari kategori produk, lokasi cabang, dan halaman Merek dari data yang tersedia.
+Header dan Footer merupakan komponen layout bersama. Header memakai navigasi top-level ringkas dengan dropdown satu tingkat untuk Tentang Kami, Produk, Solusi, serta Cabang & Kontak; pada mobile dropdown tersebut berubah menjadi accordion di dalam hamburger menu. Search pada Header mencari kategori produk, lokasi cabang, dan halaman Merek dari data yang tersedia.
 
 ## Tentang Kami
 
@@ -115,7 +115,7 @@ Aturan konversi kemasan:
 
 ## Merek
 
-Route `/merek` menampilkan 16 merek cat dan material bangunan dalam satu portofolio terpadu. Urutan merek, metadata logo, dan konfigurasi CTA disimpan di `src/data/brands.ts`, section modular berada di `src/components/brands/`, dan aset logo berada di `public/images/brands/`.
+Route `/merek` menampilkan 16 merek cat dan material bangunan dalam satu portofolio terpadu. Daftar merek bersama untuk halaman Merek dan dropdown Produk disimpan di `src/data/brand-list.ts`, konfigurasi konten halaman Merek disimpan di `src/data/brands.ts`, section modular berada di `src/components/brands/`, dan aset logo berada di `public/images/brands/`.
 
 ## Loyalty Member
 
@@ -145,6 +145,7 @@ Route `/galeri-proyek` menampilkan portofolio proyek terdokumentasi dan daftar p
 ## Data dan Aset
 
 - Data navigasi, kategori Homepage, dan pencarian: `src/data/site.ts`
+- Daftar merek bersama untuk dropdown Produk dan halaman Merek: `src/data/brand-list.ts`
 - Data konfigurasi Kalkulator Cat: `src/data/paintCalculator.ts`
 - Data cabang lengkap dan alamat kantor pusat: `src/data/branches.ts`
 - Data jam operasional cabang: `src/data/opening-hours.ts`
