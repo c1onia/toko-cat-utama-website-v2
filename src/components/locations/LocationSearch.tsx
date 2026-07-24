@@ -72,7 +72,7 @@ export function LocationSearch({ branches }: LocationSearchProps) {
             <input
               id="branch-query"
               type="search"
-              placeholder="Cari nama toko, kota, atau alamat"
+              placeholder="Cari nama toko, kota, alamat, atau merek mesin tinting"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
             />
