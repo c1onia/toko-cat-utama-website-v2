@@ -40,7 +40,9 @@ export function LocationSearch({ branches }: LocationSearchProps) {
     return branches.filter((branch) => {
       const matchesCity = city ? branch.city === city : true;
       const searchableText = normalize(
-        `${branch.name} ${branch.city} ${branch.address}`,
+        `${branch.name} ${branch.city} ${branch.address} ${
+          branch.tintingMachines?.join(" ") ?? ""
+        }`,
       );
       const matchesQuery = normalizedQuery
         ? searchableText.includes(normalizedQuery)
