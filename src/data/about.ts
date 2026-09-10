@@ -49,7 +49,7 @@ export const historySection = {
 
 export const purposeSection = {
   eyebrow: "Arah Perusahaan",
-  title: "Visi, Misi, dan Nilai",
+  title: "Visi, Misi, dan Value Utama",
   vision: {
     title: "Visi",
     description:
@@ -58,10 +58,12 @@ export const purposeSection = {
   mission: {
     title: "Misi",
     description:
-      "Membangun kehandalan, kredibilitas, dan hubungan yang baik dengan supplier dan customer melalui pengembangan SDM berkelanjutan serta memiliki dampak positif pada masyarakat sekitar.",
+      "Membangun keandalan, kredibilitas, dan hubungan yang baik dengan supplier dan customer melalui pengembangan SDM berkelanjutan serta memiliki dampak positif pada masyarakat sekitar.",
   },
-  valuesTitle: "Nilai Perusahaan",
-  values: ["Komitmen", "Kejujuran", "Pertumbuhan", "Bersyukur", "Kekeluargaan"],
+  valuesTitle: "Value Utama",
+  valueStatement:
+    "Mari berkomitmen bersama Utama untuk melakukan kejujuran demi mencapai pertumbuhan, disertai rasa syukur dengan semangat kekeluargaan.",
+  values: ["berkomitmen", "kejujuran", "pertumbuhan", "syukur", "kekeluargaan"],
 };
 
 export const teamSection = {

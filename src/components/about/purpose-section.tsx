@@ -1,5 +1,17 @@
 import { purposeSection } from "@/data/about";
 
+function renderHighlightedValueStatement() {
+  const pattern = new RegExp(`(${purposeSection.values.join("|")})`, "gi");
+
+  return purposeSection.valueStatement.split(pattern).map((part, index) => {
+    const isCoreValue = purposeSection.values.some(
+      (value) => value.toLowerCase() === part.toLowerCase(),
+    );
+
+    return isCoreValue ? <strong key={`${part}-${index}`}>{part}</strong> : part;
+  });
+}
+
 export function PurposeSection() {
   return (
     <section className="section" aria-labelledby="purpose-title">
@@ -20,11 +32,7 @@ export function PurposeSection() {
         </div>
         <div className="values" aria-labelledby="values-title">
           <h3 id="values-title">{purposeSection.valuesTitle}</h3>
-          <ul>
-            {purposeSection.values.map((value) => (
-              <li key={value}>{value}</li>
-            ))}
-          </ul>
+          <p className="values__statement">{renderHighlightedValueStatement()}</p>
         </div>
       </div>
     </section>
