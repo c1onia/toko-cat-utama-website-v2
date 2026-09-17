@@ -1,6 +1,6 @@
 import { HomePage } from "@/components/home/home-page";
 import { homeCopy } from "@/i18n/home";
 
-export default function Page() {
-  return <HomePage copy={homeCopy.id} />;
+export default function EnglishHomePage() {
+  return <HomePage copy={homeCopy.en} />;
 }

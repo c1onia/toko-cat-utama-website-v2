@@ -1,18 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { categories } from "@/data/site";
+import { homeCopy } from "@/i18n/home";
+import type { CategoriesCopy } from "@/types/i18n";
 
-export function CategoriesSection() {
+type CategoriesSectionProps = {
+  copy?: CategoriesCopy;
+};
+
+export function CategoriesSection({ copy = homeCopy.id.categories }: CategoriesSectionProps) {
   return (
     <section className="section" id="kategori-produk" aria-labelledby="categories-title">
       <div className="container">
         <div className="section-heading">
-          <p className="eyebrow">Produk Lengkap</p>
-          <h2 id="categories-title">Kategori Produk</h2>
+          <p className="eyebrow">{copy.eyebrow}</p>
+          <h2 id="categories-title">{copy.title}</h2>
         </div>
         <div className="category-grid">
-          {categories.map(({ title, slug, image, imageAlt }) => (
+          {copy.categories.map(({ title, slug, image, imageAlt }) => (
             <Link className="category-card" href={`/produk#${slug}`} key={slug}>
               <span className="category-card__image">
                 <Image
