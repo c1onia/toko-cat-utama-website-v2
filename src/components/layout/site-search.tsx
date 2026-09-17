@@ -5,21 +5,7 @@ import { Search, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import { searchItems } from "@/data/site";
 
-type SiteSearchProps = {
-  label?: string;
-  placeholder?: string;
-  resultsLabel?: string;
-  emptyLabel?: string;
-  clearLabel?: string;
-};
-
-export function SiteSearch({
-  label = "Cari produk, merek, kategori, atau lokasi toko",
-  placeholder = "Cari...",
-  resultsLabel = "Hasil pencarian",
-  emptyLabel = "Tidak ada hasil yang sesuai.",
-  clearLabel = "Hapus pencarian",
-}: SiteSearchProps) {
+export function SiteSearch() {
   const [query, setQuery] = useState("");
   const normalizedQuery = query.trim().toLocaleLowerCase("id-ID");
 
@@ -34,24 +20,24 @@ export function SiteSearch({
   return (
     <div className="site-search">
       <label className="site-search__field">
-        <span className="sr-only">{label}</span>
+        <span className="sr-only">Cari produk, merek, kategori, atau lokasi toko</span>
         <Search aria-hidden="true" size={20} strokeWidth={2} />
         <input
           type="search"
-          placeholder={placeholder}
+          placeholder="Cari..."
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           autoComplete="off"
         />
         {query ? (
-          <button type="button" onClick={() => setQuery("")} aria-label={clearLabel}>
+          <button type="button" onClick={() => setQuery("")} aria-label="Hapus pencarian">
             <X aria-hidden="true" size={18} />
           </button>
         ) : null}
       </label>
 
       {normalizedQuery ? (
-        <div className="site-search__results" role="region" aria-live="polite" aria-label={resultsLabel}>
+        <div className="site-search__results" role="region" aria-live="polite" aria-label="Hasil pencarian">
           {results.length ? (
             results.map((item) => (
               <Link key={`${item.type}-${item.label}`} href={item.href} onClick={() => setQuery("")}>
@@ -60,7 +46,7 @@ export function SiteSearch({
               </Link>
             ))
           ) : (
-            <p>{emptyLabel}</p>
+            <p>Tidak ada hasil yang sesuai.</p>
           )}
         </div>
       ) : null}

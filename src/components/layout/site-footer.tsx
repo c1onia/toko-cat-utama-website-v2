@@ -1,34 +1,23 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { Mail, MapPin, MessageCircle } from "lucide-react";
 import { headOfficeAddress } from "@/data/branches";
-import { whatsappUrl } from "@/data/site";
-import { getLocaleFromPathname, localizePath } from "@/i18n/config";
-import { getDictionary } from "@/i18n/dictionaries";
-import { buildFooterNavigation } from "@/i18n/navigation";
+import { footerNavigation, whatsappUrl } from "@/data/site";
 
 export function SiteFooter() {
-  const pathname = usePathname();
-  const locale = getLocaleFromPathname(pathname);
-  const dictionary = getDictionary(locale);
-  const footerNavigation = buildFooterNavigation(locale, dictionary.layout.navigation);
-
   return (
     <footer className="site-footer">
       <div className="container site-footer__grid">
         <div className="site-footer__brand">
-          <Link href={localizePath("/", locale)} aria-label={dictionary.layout.logoLabel}>
+          <Link href="/" aria-label="Toko Cat Utama - Beranda">
             <Image src="/brand/logo-white.png" alt="Toko Cat Utama" width={180} height={103} />
           </Link>
-          <p>{dictionary.layout.tagline}</p>
+          <p>Tercepat. Terlengkap. Terpercaya.</p>
         </div>
 
         <div>
-          <h2>{dictionary.layout.quickMenu}</h2>
-          <nav aria-label="Footer navigation">
+          <h2>Menu Cepat</h2>
+          <nav aria-label="Navigasi footer">
             {footerNavigation.map((item) => (
               <Link key={item.href} href={item.href}>{item.label}</Link>
             ))}
@@ -36,7 +25,7 @@ export function SiteFooter() {
         </div>
 
         <div className="site-footer__contact">
-          <h2>{dictionary.layout.contactHeading}</h2>
+          <h2>Kontak</h2>
           <a href={whatsappUrl} target="_blank" rel="noreferrer">
             <MessageCircle aria-hidden="true" />
             <span>WhatsApp<br />+62 812-6692-5000</span>
@@ -47,7 +36,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="container site-footer__bottom">
-        <p>© {new Date().getFullYear()} Toko Cat Utama. {dictionary.layout.rights}</p>
+        <p>© {new Date().getFullYear()} Toko Cat Utama. Seluruh hak cipta dilindungi.</p>
       </div>
     </footer>
   );

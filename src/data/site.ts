@@ -89,7 +89,7 @@ export const categories: CategoryItem[] = [
   },
 ];
 
-export const productNavigationCategories = [
+const productNavigationCategories = [
   "cat-dekoratif",
   "cat-protective",
   "marine-paint",

@@ -2,39 +2,21 @@ import { Building2, MapPin } from "lucide-react";
 import { ActionLink } from "@/components/ui/action-link";
 import { branches } from "@/data/branches";
 
-type LocationSectionContent = {
-  eyebrow: string;
-  title: string;
-  countLabel: string;
-  ctaLabel: string;
-};
-
-type LocationSectionProps = {
-  content?: LocationSectionContent;
-};
-
-export function LocationSection({
-  content = {
-    eyebrow: `${branches.length} Cabang`,
-    title: "Lokasi Toko",
-    countLabel: "cabang di Jawa Tengah",
-    ctaLabel: "Cari Cabang",
-  },
-}: LocationSectionProps) {
+export function LocationSection() {
   return (
     <section className="section location" id="lokasi-toko" aria-labelledby="location-title">
       <div className="container location__grid">
         <div className="location__content">
-          <p className="eyebrow">{content.eyebrow}</p>
-          <h2 id="location-title">{content.title}</h2>
+          <p className="eyebrow">{branches.length} Cabang</p>
+          <h2 id="location-title">Lokasi Toko</h2>
           <div className="location__count">
             <Building2 aria-hidden="true" />
             <strong>{branches.length}</strong>
-            <span>{content.countLabel}</span>
+            <span>cabang di Jawa Tengah</span>
           </div>
           <ActionLink href="/lokasi-toko">
             <MapPin aria-hidden="true" size={20} />
-            {content.ctaLabel}
+            Cari Cabang
           </ActionLink>
         </div>
         <div className="location__graphic" aria-hidden="true">

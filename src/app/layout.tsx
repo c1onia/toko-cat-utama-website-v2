@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Outfit, Poppins } from "next/font/google";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
-import { SkipLink } from "@/components/layout/skip-link";
-import { getDictionary } from "@/i18n/dictionaries";
 import "@/app/globals.css";
 import "@/styles/home.css";
 
@@ -21,21 +19,12 @@ const poppins = Poppins({
   display: "swap",
 });
 
-const dictionary = getDictionary("id");
-
 export const metadata: Metadata = {
-  title: dictionary.metadata.homeTitle,
-  description: dictionary.metadata.homeDescription,
-  alternates: {
-    languages: {
-      id: "/",
-      en: "/en",
-      zh: "/zh",
-    },
-  },
+  title: "Toko Cat Utama | Tercepat. Terlengkap. Terpercaya.",
+  description: "Membantu pelanggan menemukan solusi pengecatan yang tepat melalui rekomendasi yang jujur, produk yang lengkap, serta pelayanan yang profesional.",
   openGraph: {
-    title: dictionary.metadata.homeTitle,
-    description: dictionary.metadata.homeDescription,
+    title: "Toko Cat Utama | Tercepat. Terlengkap. Terpercaya.",
+    description: "Membantu pelanggan menemukan solusi pengecatan yang tepat melalui rekomendasi yang jujur, produk yang lengkap, serta pelayanan yang profesional.",
     type: "website",
     locale: "id_ID",
   },
@@ -45,7 +34,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="id" className={`${outfit.variable} ${poppins.variable}`}>
       <body>
-        <SkipLink />
+        <a className="skip-link" href="#main-content">Lewati ke konten utama</a>
         <SiteHeader />
         {children}
         <SiteFooter />
