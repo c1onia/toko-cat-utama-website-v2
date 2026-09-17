@@ -1,17 +1,27 @@
 import Image from "next/image";
 import { storesSection } from "@/data/about";
 
-export function StoresGallery() {
+type StoresGalleryContent = Omit<typeof storesSection, "images"> & {
+  images?: ReadonlyArray<(typeof storesSection.images)[number]>;
+};
+
+type StoresGalleryProps = {
+  content?: StoresGalleryContent;
+};
+
+export function StoresGallery({ content = storesSection }: StoresGalleryProps) {
+  const images = content.images ?? storesSection.images;
+
   return (
     <section className="section" aria-labelledby="stores-title">
       <div className="container">
         <div className="section-heading">
-          <p className="eyebrow">{storesSection.eyebrow}</p>
-          <h2 id="stores-title">{storesSection.title}</h2>
-          <p>{storesSection.description}</p>
+          <p className="eyebrow">{content.eyebrow}</p>
+          <h2 id="stores-title">{content.title}</h2>
+          <p>{content.description}</p>
         </div>
         <div className="stores-gallery">
-          {storesSection.images.map((image) => (
+          {images.map((image) => (
             <div className="stores-gallery__item" key={image.src}>
               <Image
                 src={image.src}

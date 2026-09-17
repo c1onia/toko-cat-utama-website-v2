@@ -3,19 +3,25 @@ import { ActionLink } from "@/components/ui/action-link";
 import { aboutCta } from "@/data/about";
 import { whatsappUrl } from "@/data/site";
 
-export function AboutCta() {
+type AboutCtaContent = typeof aboutCta;
+
+type AboutCtaProps = {
+  content?: AboutCtaContent;
+};
+
+export function AboutCta({ content = aboutCta }: AboutCtaProps) {
   return (
     <section className="section about-cta" aria-labelledby="about-cta-title">
       <div className="container about-cta__inner">
-        <h2 id="about-cta-title">{aboutCta.title}</h2>
+        <h2 id="about-cta-title">{content.title}</h2>
         <div className="about-cta__actions">
           <ActionLink href={whatsappUrl} external>
             <MessageCircle aria-hidden="true" size={20} />
-            {aboutCta.primaryLabel}
+            {content.primaryLabel}
           </ActionLink>
           <ActionLink href="/#lokasi-toko" variant="secondary">
             <MapPin aria-hidden="true" size={20} />
-            {aboutCta.secondaryLabel}
+            {content.secondaryLabel}
           </ActionLink>
         </div>
       </div>

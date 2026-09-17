@@ -5,8 +5,18 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, MessageCircle, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { navigation, whatsappUrl } from "@/data/site";
+import { whatsappUrl } from "@/data/site";
 import { SiteSearch } from "@/components/layout/site-search";
+import {
+  getLocaleFromPathname,
+  getLocalizedEquivalentPath,
+  localeLabels,
+  locales,
+  localizePath,
+  stripLocaleFromPathname,
+} from "@/i18n/config";
+import { getDictionary } from "@/i18n/dictionaries";
+import { buildNavigation } from "@/i18n/navigation";
 import type { NavigationItem, PrimaryNavigationItem } from "@/types/site";
 
 export function SiteHeader() {
@@ -15,6 +25,9 @@ export function SiteHeader() {
   const [openMobileGroup, setOpenMobileGroup] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
+  const locale = getLocaleFromPathname(pathname);
+  const dictionary = getDictionary(locale);
+  const navigation = buildNavigation(locale, dictionary.layout.navigation);
 
   useEffect(() => {
     function closeOnOutsideClick(event: MouseEvent) {
@@ -49,11 +62,11 @@ export function SiteHeader() {
   return (
     <header className="site-header" ref={headerRef}>
       <div className="container site-header__inner">
-        <Link className="site-header__logo" href="/" aria-label="Toko Cat Utama - Beranda">
+        <Link className="site-header__logo" href={localizePath("/", locale)} aria-label={dictionary.layout.logoLabel}>
           <Image src="/brand/logo-primary.png" alt="Toko Cat Utama" width={240} height={137} priority />
         </Link>
 
-        <nav className="site-header__desktop-nav" aria-label="Navigasi utama">
+        <nav className="site-header__desktop-nav" aria-label={dictionary.layout.primaryNavigationLabel}>
           {navigation.map((item) => (
             <DesktopNavigationItem
               item={item}
@@ -69,17 +82,22 @@ export function SiteHeader() {
         </nav>
 
         <div className="site-header__actions">
-          <SiteSearch />
+          <SiteSearch label={dictionary.layout.search.label} placeholder={dictionary.layout.search.placeholder} />
+          <LanguageSwitcher
+            currentLocale={locale}
+            label={dictionary.layout.languageLabel}
+            pathname={pathname}
+          />
           <a className="button button--primary site-header__cta" href={whatsappUrl} target="_blank" rel="noreferrer">
             <MessageCircle aria-hidden="true" size={20} />
-            Hubungi Kami
+            {dictionary.layout.contactCta}
           </a>
           <button
             className="site-header__menu-button"
             type="button"
             aria-expanded={isOpen}
             aria-controls="mobile-navigation"
-            aria-label={isOpen ? "Tutup menu" : "Buka menu"}
+            aria-label={isOpen ? dictionary.layout.closeMenu : dictionary.layout.openMenu}
             onClick={() => setIsOpen((current) => !current)}
           >
             {isOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
@@ -90,8 +108,13 @@ export function SiteHeader() {
       {isOpen ? (
         <div className="site-header__mobile-panel" id="mobile-navigation">
           <div className="container">
-            <SiteSearch />
-            <nav aria-label="Navigasi mobile">
+            <SiteSearch label={dictionary.layout.search.label} placeholder={dictionary.layout.search.placeholder} />
+            <LanguageSwitcher
+              currentLocale={locale}
+              label={dictionary.layout.languageLabel}
+              pathname={pathname}
+            />
+            <nav aria-label={dictionary.layout.mobileNavigationLabel}>
               {navigation.map((item) => (
                 <MobileNavigationItem
                   item={item}
@@ -107,7 +130,7 @@ export function SiteHeader() {
             </nav>
             <a className="button button--primary" href={whatsappUrl} target="_blank" rel="noreferrer">
               <MessageCircle aria-hidden="true" size={20} />
-              Hubungi Kami
+              {dictionary.layout.contactCta}
             </a>
           </div>
         </div>
@@ -142,7 +165,7 @@ function DesktopNavigationItem({
   return (
     <div
       className="site-header__nav-group"
-      data-align={item.label === "Cabang & Kontak" ? "end" : undefined}
+      data-align={item.href === "/lokasi-toko" ? "end" : undefined}
       data-open={isOpen}
     >
       <button
@@ -250,9 +273,33 @@ function NavigationLink({ item, isMenuItem = false, onClick }: NavigationLinkPro
 }
 
 function isNavigationItemActive(item: PrimaryNavigationItem, pathname: string) {
+  const currentPath = stripLocaleFromPathname(pathname);
   const itemPaths = [item.href, ...(item.sections?.flatMap((section) => section.items.map(({ href }) => href)) ?? [])]
     .filter((href) => href.startsWith("/"))
-    .map((href) => href.split("#")[0]);
+    .map((href) => stripLocaleFromPathname(href.split("#")[0]));
 
-  return itemPaths.some((href) => (href === "/" ? pathname === "/" : pathname === href));
+  return itemPaths.some((href) => (href === "/" ? currentPath === "/" : currentPath === href));
+}
+
+type LanguageSwitcherProps = {
+  currentLocale: ReturnType<typeof getLocaleFromPathname>;
+  label: string;
+  pathname: string;
+};
+
+function LanguageSwitcher({ currentLocale, label, pathname }: LanguageSwitcherProps) {
+  return (
+    <div className="language-switcher" aria-label={label}>
+      {locales.map((locale) => (
+        <Link
+          aria-current={locale === currentLocale ? "page" : undefined}
+          className="language-switcher__link"
+          href={getLocalizedEquivalentPath(pathname, locale)}
+          key={locale}
+        >
+          {localeLabels[locale]}
+        </Link>
+      ))}
+    </div>
+  );
 }

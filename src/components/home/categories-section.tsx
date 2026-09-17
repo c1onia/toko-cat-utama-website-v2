@@ -2,17 +2,34 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { categories } from "@/data/site";
+import type { CategoryItem } from "@/types/site";
 
-export function CategoriesSection() {
+type CategoriesSectionContent = {
+  eyebrow: string;
+  title: string;
+  items: ReadonlyArray<CategoryItem>;
+};
+
+type CategoriesSectionProps = {
+  content?: CategoriesSectionContent;
+};
+
+export function CategoriesSection({
+  content = {
+    eyebrow: "Produk Lengkap",
+    title: "Kategori Produk",
+    items: categories,
+  },
+}: CategoriesSectionProps) {
   return (
     <section className="section" id="kategori-produk" aria-labelledby="categories-title">
       <div className="container">
         <div className="section-heading">
-          <p className="eyebrow">Produk Lengkap</p>
-          <h2 id="categories-title">Kategori Produk</h2>
+          <p className="eyebrow">{content.eyebrow}</p>
+          <h2 id="categories-title">{content.title}</h2>
         </div>
         <div className="category-grid">
-          {categories.map(({ title, slug, image, imageAlt }) => (
+          {content.items.map(({ title, slug, image, imageAlt }) => (
             <Link className="category-card" href={`/produk#${slug}`} key={slug}>
               <span className="category-card__image">
                 <Image

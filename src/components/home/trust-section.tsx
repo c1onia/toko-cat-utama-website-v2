@@ -1,15 +1,32 @@
 import { features } from "@/data/site";
+import type { FeatureItem } from "@/types/site";
 
-export function TrustSection() {
+type TrustSectionContent = {
+  eyebrow: string;
+  title: string;
+  features: ReadonlyArray<FeatureItem>;
+};
+
+type TrustSectionProps = {
+  content?: TrustSectionContent;
+};
+
+export function TrustSection({
+  content = {
+    eyebrow: "Mengapa Toko Cat Utama",
+    title: "Mengapa Pelanggan Memilih Kami",
+    features,
+  },
+}: TrustSectionProps) {
   return (
     <section className="section section--light" id="mengapa-kami" aria-labelledby="trust-title">
       <div className="container">
         <div className="section-heading section-heading--center">
-          <p className="eyebrow">Mengapa Toko Cat Utama</p>
-          <h2 id="trust-title">Mengapa Pelanggan Memilih Kami</h2>
+          <p className="eyebrow">{content.eyebrow}</p>
+          <h2 id="trust-title">{content.title}</h2>
         </div>
         <div className="trust-grid">
-          {features.map(({ title, icon: Icon }) => (
+          {content.features.map(({ title, icon: Icon }) => (
             <article className="trust-card" key={title}>
               <span className="icon-box"><Icon aria-hidden="true" /></span>
               <h3>{title}</h3>
