@@ -1,6 +1,42 @@
-import type { CategoryItem, FeatureItem } from "@/types/site";
+import type { CategoryItem, FeatureItem, NavigationItem, PrimaryNavigationItem } from "@/types/site";
 
 export type Locale = "id" | "en" | "zh";
+
+export type SearchCopy = {
+  srLabel: string;
+  placeholder: string;
+  clearLabel: string;
+  resultsLabel: string;
+  emptyState: string;
+  typeLabels: {
+    Kategori: string;
+    Lokasi: string;
+    Halaman: string;
+  };
+};
+
+export type LayoutCopy = {
+  logoAriaLabel: string;
+  desktopNavAriaLabel: string;
+  mobileNavAriaLabel: string;
+  openMenuLabel: string;
+  closeMenuLabel: string;
+  contactCta: string;
+  navigation: PrimaryNavigationItem[];
+  search: SearchCopy;
+  footer: {
+    tagline: string;
+    quickMenuTitle: string;
+    quickMenuAriaLabel: string;
+    contactTitle: string;
+    whatsappLabel: string;
+    emailLabel: string;
+    headOfficeLabel: string;
+    instagramLabel: string;
+    copyright: string;
+    navigation: NavigationItem[];
+  };
+};
 
 export type HeroCopy = {
   imageAlt: string;

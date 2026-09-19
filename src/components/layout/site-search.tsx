@@ -4,8 +4,14 @@ import Link from "next/link";
 import { Search, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import { searchItems } from "@/data/site";
+import { layoutCopy } from "@/i18n/layout";
+import type { SearchCopy } from "@/types/i18n";
 
-export function SiteSearch() {
+type SiteSearchProps = {
+  copy?: SearchCopy;
+};
+
+export function SiteSearch({ copy = layoutCopy.id.search }: SiteSearchProps) {
   const [query, setQuery] = useState("");
   const normalizedQuery = query.trim().toLocaleLowerCase("id-ID");
 
@@ -20,33 +26,33 @@ export function SiteSearch() {
   return (
     <div className="site-search">
       <label className="site-search__field">
-        <span className="sr-only">Cari produk, merek, kategori, atau lokasi toko</span>
+        <span className="sr-only">{copy.srLabel}</span>
         <Search aria-hidden="true" size={20} strokeWidth={2} />
         <input
           type="search"
-          placeholder="Cari..."
+          placeholder={copy.placeholder}
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           autoComplete="off"
         />
         {query ? (
-          <button type="button" onClick={() => setQuery("")} aria-label="Hapus pencarian">
+          <button type="button" onClick={() => setQuery("")} aria-label={copy.clearLabel}>
             <X aria-hidden="true" size={18} />
           </button>
         ) : null}
       </label>
 
       {normalizedQuery ? (
-        <div className="site-search__results" role="region" aria-live="polite" aria-label="Hasil pencarian">
+        <div className="site-search__results" role="region" aria-live="polite" aria-label={copy.resultsLabel}>
           {results.length ? (
             results.map((item) => (
               <Link key={`${item.type}-${item.label}`} href={item.href} onClick={() => setQuery("")}>
                 <span>{item.label}</span>
-                <small>{item.type}</small>
+                <small>{copy.typeLabels[item.type]}</small>
               </Link>
             ))
           ) : (
-            <p>Tidak ada hasil yang sesuai.</p>
+            <p>{copy.emptyState}</p>
           )}
         </div>
       ) : null}
