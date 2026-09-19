@@ -82,3 +82,88 @@ export type HomeCopy = {
   location: LocationCopy;
   contact: ContactCopy;
 };
+
+export type AboutHeroCopy = {
+  title: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+};
+
+export type CompanyIntroductionCopy = {
+  eyebrow: string;
+  title: string;
+  paragraphs: string[];
+  image: string;
+  imageAlt: string;
+};
+
+export type HistoryCopy = {
+  eyebrow: string;
+  title: string;
+  milestones: Array<{
+    year: string;
+    description: string;
+  }>;
+};
+
+export type PurposeCopy = {
+  eyebrow: string;
+  title: string;
+  vision: {
+    title: string;
+    description: string;
+  };
+  mission: {
+    title: string;
+    description: string;
+  };
+  valuesTitle: string;
+  valueStatement: string;
+  values: string[];
+};
+
+export type ImageCopy = {
+  src: string;
+  alt: string;
+};
+
+export type MediaSectionCopy = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+};
+
+export type StoresCopy = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  images: ImageCopy[];
+};
+
+export type TrustSummaryCopy = {
+  eyebrow: string;
+  title: string;
+  facts: string[];
+};
+
+export type AboutCtaCopy = {
+  title: string;
+  primaryLabel: string;
+  secondaryLabel: string;
+  secondaryHref: string;
+};
+
+export type AboutCopy = {
+  hero: AboutHeroCopy;
+  companyIntroduction: CompanyIntroductionCopy;
+  history: HistoryCopy;
+  purpose: PurposeCopy;
+  team: MediaSectionCopy;
+  stores: StoresCopy;
+  community: MediaSectionCopy;
+  trustSummary: TrustSummaryCopy;
+  cta: AboutCtaCopy;
+};

@@ -43,6 +43,7 @@ const brandLinks = brandList.map((brand) => ({
 
 function createNavigation(locale: Locale): PrimaryNavigationItem[] {
   const homeHref = locale === "id" ? "/" : `/${locale}`;
+  const aboutHref = locale === "id" ? "/tentang-kami" : `/${locale}/tentang-kami`;
   const whyChooseUsHref = locale === "id" ? "/#mengapa-kami" : `/${locale}#mengapa-kami`;
 
   const labels = {
@@ -109,12 +110,12 @@ function createNavigation(locale: Locale): PrimaryNavigationItem[] {
     { label: labels.home, href: homeHref },
     {
       label: labels.about,
-      href: "/tentang-kami",
+      href: aboutHref,
       sections: [
         {
           title: labels.aboutSection,
           items: [
-            { label: labels.aboutCompany, href: "/tentang-kami" },
+            { label: labels.aboutCompany, href: aboutHref },
             { label: labels.whyChooseUs, href: whyChooseUsHref },
             { label: labels.loyalty, href: "/loyalty-member" },
           ],
@@ -247,7 +248,7 @@ export const layoutCopy: Record<Locale, LayoutCopy> = {
       copyright: "Toko Cat Utama. All rights reserved.",
       navigation: [
         { label: "Home", href: "/en" },
-        { label: "About Us", href: "/tentang-kami" },
+        { label: "About Us", href: "/en/tentang-kami" },
         { label: "Products", href: "/produk" },
         { label: "Paint Calculator", href: "/kalkulator-cat" },
         { label: "Brands", href: "/merek" },
@@ -290,7 +291,7 @@ export const layoutCopy: Record<Locale, LayoutCopy> = {
       copyright: "Toko Cat Utama. 版权所有。",
       navigation: [
         { label: "首页", href: "/zh" },
-        { label: "关于我们", href: "/tentang-kami" },
+        { label: "关于我们", href: "/zh/tentang-kami" },
         { label: "产品", href: "/produk" },
         { label: "涂料计算器", href: "/kalkulator-cat" },
         { label: "品牌", href: "/merek" },
