@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { ContactForm } from "@/components/contact/contact-form";
-import { ContactHero } from "@/components/contact/contact-hero";
-import { ContactInfoSection } from "@/components/contact/contact-info-section";
-import { ContactMap } from "@/components/contact/contact-map";
+import { ContactPage as ContactPageTemplate } from "@/components/contact/contact-page";
+import { contactCopy } from "@/i18n/contact";
 import "@/styles/contact.css";
 
 export const metadata: Metadata = {
@@ -12,12 +10,5 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  return (
-    <main id="main-content">
-      <ContactHero />
-      <ContactInfoSection />
-      <ContactMap />
-      <ContactForm />
-    </main>
-  );
+  return <ContactPageTemplate copy={contactCopy.id} />;
 }

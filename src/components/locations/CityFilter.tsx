@@ -2,18 +2,26 @@ type CityFilterProps = {
   cities: string[];
   value: string;
   onChange: (value: string) => void;
+  label?: string;
+  allCitiesLabel?: string;
 };
 
-export function CityFilter({ cities, value, onChange }: CityFilterProps) {
+export function CityFilter({
+  cities,
+  value,
+  onChange,
+  label = "Filter kota",
+  allCitiesLabel = "Semua Kota",
+}: CityFilterProps) {
   return (
     <div className="location-filter">
-      <label htmlFor="city-filter">Filter kota</label>
+      <label htmlFor="city-filter">{label}</label>
       <select
         id="city-filter"
         value={value}
         onChange={(event) => onChange(event.target.value)}
       >
-        <option value="">Semua Kota</option>
+        <option value="">{allCitiesLabel}</option>
         {cities.map((city) => (
           <option value={city} key={city}>
             {city}

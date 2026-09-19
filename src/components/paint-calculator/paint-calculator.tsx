@@ -9,9 +9,12 @@ import { OpeningsEditor } from "@/components/paint-calculator/openings-editor";
 import { PaintClassSelector } from "@/components/paint-calculator/paint-class-selector";
 import {
   defaultCalculatorValues,
-  paintCalculatorScopeNotice,
-  paintClassConfigs,
 } from "@/data/paintCalculator";
+import {
+  getPaintClassConfig,
+  paintCalculatorCopy,
+  type PaintCalculatorCopy,
+} from "@/i18n/paint-calculator";
 import {
   calculateOpeningArea,
   calculatePackageCombination,
@@ -22,8 +25,15 @@ import {
   formatPackageRecommendation,
 } from "@/lib/paintCalculator";
 import type { CalculationType, OpeningEntry, PaintClassId } from "@/types/paintCalculator";
+import type { Locale } from "@/types/i18n";
 
-export function PaintCalculator() {
+type PaintCalculatorProps = {
+  copy?: PaintCalculatorCopy;
+  locale?: Locale;
+};
+
+export function PaintCalculator({ copy, locale = "id" }: PaintCalculatorProps) {
+  const localizedCopy = copy ?? paintCalculatorCopy[locale];
   const [calculationType, setCalculationType] = useState<CalculationType>(
     defaultCalculatorValues.calculationType,
   );
@@ -35,8 +45,7 @@ export function PaintCalculator() {
   );
 
   const result = useMemo(() => {
-    const paintClass =
-      paintClassConfigs.find((config) => config.id === paintClassId) ?? paintClassConfigs[0];
+    const paintClass = getPaintClassConfig(localizedCopy.paintClass.configs, paintClassId);
     const grossArea =
       calculationType === "wall"
         ? calculateWallArea(wall.length, wall.height)
@@ -60,9 +69,13 @@ export function PaintCalculator() {
       windowArea,
       paintableArea,
       ...requirement,
-      packageRecommendation: formatPackageRecommendation(packageCombination, paintClass),
+      packageRecommendation: formatPackageRecommendation(
+        packageCombination,
+        paintClass,
+        localizedCopy.packageLabels,
+      ),
     };
-  }, [calculationType, wall, room, openings, paintClassId]);
+  }, [calculationType, wall, room, openings, paintClassId, localizedCopy]);
 
   function resetCalculator() {
     setCalculationType(defaultCalculatorValues.calculationType);
@@ -73,24 +86,37 @@ export function PaintCalculator() {
   }
 
   return (
-    <section className="section calculator-section" aria-label="Form kalkulator cat tembok">
+    <section className="section calculator-section" aria-label={localizedCopy.sectionAriaLabel}>
       <div className="container calculator-layout">
         <div className="calculator-workspace">
           <div className="calculator-info-banner" role="note">
             <Info aria-hidden="true" />
-            <p>{paintCalculatorScopeNotice}</p>
+            <p>{localizedCopy.scopeNotice}</p>
           </div>
 
-          <CalculationTypeSelector value={calculationType} onChange={setCalculationType} />
+          <CalculationTypeSelector
+            value={calculationType}
+            onChange={setCalculationType}
+            copy={localizedCopy.calculationType}
+          />
           <DimensionsForm
             calculationType={calculationType}
             wall={wall}
             room={room}
             onWallChange={setWall}
             onRoomChange={setRoom}
+            copy={localizedCopy.dimensions}
           />
-          <OpeningsEditor openings={openings} onChange={setOpenings} />
-          <PaintClassSelector value={paintClassId} onChange={setPaintClassId} />
+          <OpeningsEditor
+            openings={openings}
+            onChange={setOpenings}
+            copy={localizedCopy.openings}
+          />
+          <PaintClassSelector
+            value={paintClassId}
+            onChange={setPaintClassId}
+            copy={localizedCopy.paintClass}
+          />
         </div>
 
         <CalculationSummary
@@ -103,6 +129,9 @@ export function PaintCalculator() {
           recommendedGallons={result.recommendedGallons}
           packageRecommendation={result.packageRecommendation}
           onReset={resetCalculator}
+          copy={localizedCopy.summary}
+          coverageSuffix={localizedCopy.paintClass.coverageSuffix}
+          gallonLabel={localizedCopy.packageLabels.gallon.toLowerCase()}
         />
       </div>
     </section>

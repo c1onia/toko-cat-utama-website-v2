@@ -8,9 +8,29 @@ import { TintingMachine } from "./TintingMachine";
 
 type BranchCardProps = {
   branch: Branch;
+  copy?: {
+    imageAltPrefix: string;
+    missingImage: string;
+    contactLabel: string;
+    openingHoursTitle: string;
+    openingHoursAriaLabel: string;
+    openingHoursItems: ReadonlyArray<{ day: string; time: string }>;
+    tintingTitle: string;
+  };
 };
 
-export function BranchCard({ branch }: BranchCardProps) {
+export function BranchCard({
+  branch,
+  copy = {
+    imageAltPrefix: "Tampak depan cabang Toko Cat Utama",
+    missingImage: "Foto cabang belum tersedia",
+    contactLabel: "Hubungi Cabang",
+    openingHoursTitle: "Jam Operasional",
+    openingHoursAriaLabel: "Jam operasional toko",
+    openingHoursItems: [],
+    tintingTitle: "Sistem Tinting Tersedia",
+  },
+}: BranchCardProps) {
   const contactUrl = whatsappHref(branch.whatsapp);
 
   return (
@@ -19,7 +39,7 @@ export function BranchCard({ branch }: BranchCardProps) {
         <div className="branch-card__image">
           <Image
             src={branch.image}
-            alt={`Tampak depan cabang Toko Cat Utama ${branch.name}`}
+            alt={`${copy.imageAltPrefix} ${branch.name}`}
             width={1200}
             height={675}
             sizes="(max-width: 767px) calc(100vw - 48px), (max-width: 1023px) calc((100vw - 120px) / 2), 384px"
@@ -27,7 +47,7 @@ export function BranchCard({ branch }: BranchCardProps) {
         </div>
       ) : (
         <div className="branch-card__image branch-card__image--missing">
-          Foto cabang belum tersedia
+          {copy.missingImage}
         </div>
       )}
 
@@ -48,13 +68,17 @@ export function BranchCard({ branch }: BranchCardProps) {
           </p>
         )}
 
-        <OpeningHours />
-        <TintingMachine machines={branch.tintingMachines} />
+        <OpeningHours
+          title={copy.openingHoursTitle}
+          ariaLabel={copy.openingHoursAriaLabel}
+          items={copy.openingHoursItems.length ? copy.openingHoursItems : undefined}
+        />
+        <TintingMachine machines={branch.tintingMachines} title={copy.tintingTitle} />
 
         <div className="branch-card__actions">
           {contactUrl && (
             <ActionLink href={contactUrl} external>
-              Hubungi Cabang
+              {copy.contactLabel}
             </ActionLink>
           )}
           {branch.googleMaps && (

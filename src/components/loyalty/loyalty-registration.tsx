@@ -1,14 +1,22 @@
 import { loyaltyPeriod, loyaltyRegistration } from "@/data/loyalty";
 import { ActionLink } from "@/components/ui/action-link";
 
-export function LoyaltyRegistration() {
-  const RegistrationIcon = loyaltyRegistration.icon;
-  const PeriodIcon = loyaltyPeriod.icon;
+type LoyaltyRegistrationProps = {
+  registration?: typeof loyaltyRegistration;
+  period?: typeof loyaltyPeriod;
+};
+
+export function LoyaltyRegistration({
+  registration = loyaltyRegistration,
+  period = loyaltyPeriod,
+}: LoyaltyRegistrationProps) {
+  const RegistrationIcon = registration.icon;
+  const PeriodIcon = period.icon;
 
   return (
     <section
       className="section loyalty-registration"
-      id={loyaltyRegistration.id}
+      id={registration.id}
       aria-labelledby="loyalty-registration-title"
     >
       <div className="container loyalty-registration__grid">
@@ -16,21 +24,21 @@ export function LoyaltyRegistration() {
           <span className="loyalty-section-icon" aria-hidden="true">
             <RegistrationIcon />
           </span>
-          <h2 id="loyalty-registration-title">{loyaltyRegistration.title}</h2>
+          <h2 id="loyalty-registration-title">{registration.title}</h2>
           <ol>
-            {loyaltyRegistration.rules.map((rule) => (
+            {registration.rules.map((rule) => (
               <li key={rule}>{rule}</li>
             ))}
           </ol>
-          <p>{loyaltyRegistration.note}</p>
-          <ActionLink href={loyaltyRegistration.ctaHref}>{loyaltyRegistration.ctaLabel}</ActionLink>
+          <p>{registration.note}</p>
+          <ActionLink href={registration.ctaHref}>{registration.ctaLabel}</ActionLink>
         </div>
         <aside className="loyalty-period" aria-labelledby="loyalty-period-title">
           <span className="loyalty-icon" aria-hidden="true">
             <PeriodIcon />
           </span>
-          <h3 id="loyalty-period-title">{loyaltyPeriod.title}</h3>
-          <p>{loyaltyPeriod.description}</p>
+          <h3 id="loyalty-period-title">{period.title}</h3>
+          <p>{period.description}</p>
         </aside>
       </div>
     </section>

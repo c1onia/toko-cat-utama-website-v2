@@ -1,14 +1,18 @@
 import { brandTrust } from "@/data/brands";
 
-export function BrandTrustSection() {
+type BrandTrustSectionProps = {
+  copy?: typeof brandTrust;
+};
+
+export function BrandTrustSection({ copy = brandTrust }: BrandTrustSectionProps) {
   return (
     <section className="section section--light" aria-labelledby="brand-trust-title">
       <div className="container">
         <div className="section-heading section-heading--center">
-          <h2 id="brand-trust-title">{brandTrust.title}</h2>
+          <h2 id="brand-trust-title">{copy.title}</h2>
         </div>
         <div className="brand-trust-grid">
-          {brandTrust.items.map((item) => {
+          {copy.items.map((item) => {
             const Icon = item.icon;
             return (
               <article className="brand-trust-card" key={item.title}>

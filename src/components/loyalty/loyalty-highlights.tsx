@@ -1,15 +1,23 @@
 import { loyaltyHighlights, loyaltyHighlightsSection } from "@/data/loyalty";
 
-export function LoyaltyHighlights() {
+type LoyaltyHighlightsProps = {
+  section?: typeof loyaltyHighlightsSection;
+  highlights?: typeof loyaltyHighlights;
+};
+
+export function LoyaltyHighlights({
+  section = loyaltyHighlightsSection,
+  highlights = loyaltyHighlights,
+}: LoyaltyHighlightsProps) {
   return (
     <section className="section loyalty-highlights" aria-labelledby="loyalty-highlights-title">
       <div className="container">
         <div className="section-heading">
-          <p className="eyebrow">{loyaltyHighlightsSection.eyebrow}</p>
-          <h2 id="loyalty-highlights-title">{loyaltyHighlightsSection.title}</h2>
+          <p className="eyebrow">{section.eyebrow}</p>
+          <h2 id="loyalty-highlights-title">{section.title}</h2>
         </div>
         <div className="loyalty-highlight-grid">
-          {loyaltyHighlights.map((item) => {
+          {highlights.map((item) => {
             const Icon = item.icon;
 
             return (

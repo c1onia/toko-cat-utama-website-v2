@@ -2,16 +2,24 @@ import Image from "next/image";
 import { ActionLink } from "@/components/ui/action-link";
 import { productCategories, productsIntroduction } from "@/data/products";
 
-export function ProductCategoryGrid() {
+type ProductCategoryGridProps = {
+  introduction?: typeof productsIntroduction;
+  categories?: typeof productCategories;
+};
+
+export function ProductCategoryGrid({
+  introduction = productsIntroduction,
+  categories = productCategories,
+}: ProductCategoryGridProps) {
   return (
     <section className="section section--light product-categories" aria-labelledby="product-categories-title">
       <div className="container">
         <div className="product-categories__introduction">
-          <h2 id="product-categories-title">{productsIntroduction.title}</h2>
-          <p>{productsIntroduction.description}</p>
+          <h2 id="product-categories-title">{introduction.title}</h2>
+          <p>{introduction.description}</p>
         </div>
         <div className="product-category-grid">
-          {productCategories.map((category) => (
+          {categories.map((category) => (
             <article className="product-solution-card" id={category.slug} key={category.slug}>
               <div className="product-solution-card__image">
                 <Image

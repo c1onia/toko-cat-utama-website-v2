@@ -1,7 +1,26 @@
 import Image from "next/image";
 import { branches } from "@/data/branches";
 
-export function LocationHero() {
+type LocationHeroProps = {
+  copy?: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    ctaLabel: string;
+    imageAlt: string;
+  };
+};
+
+export function LocationHero({
+  copy = {
+    eyebrow: `${branches.length} Cabang di Jawa Tengah`,
+    title: "Temukan Toko Cat Utama Terdekat",
+    description:
+      "Cari cabang berdasarkan nama toko atau kota, kemudian hubungi cabang yang paling sesuai dengan kebutuhan Anda.",
+    ctaLabel: "Cari Cabang",
+    imageAlt: "Tampak depan cabang Toko Cat Utama Setiabudi",
+  },
+}: LocationHeroProps) {
   return (
     <section className="location-hero" aria-labelledby="location-hero-title">
       <div className="container">
@@ -9,22 +28,17 @@ export function LocationHero() {
           <Image
             className="location-hero__image"
             src="/images/branches/setiabudi.jpg"
-            alt="Tampak depan cabang Toko Cat Utama Setiabudi"
+            alt={copy.imageAlt}
             fill
             loading="eager"
             sizes="(max-width: 767px) calc(100vw - 48px), 1200px"
           />
           <div className="location-hero__content">
-            <p className="eyebrow location-hero__eyebrow">
-              {branches.length} Cabang di Jawa Tengah
-            </p>
-            <h1 id="location-hero-title">Temukan Toko Cat Utama Terdekat</h1>
-            <p>
-              Cari cabang berdasarkan nama toko atau kota, kemudian hubungi
-              cabang yang paling sesuai dengan kebutuhan Anda.
-            </p>
+            <p className="eyebrow location-hero__eyebrow">{copy.eyebrow}</p>
+            <h1 id="location-hero-title">{copy.title}</h1>
+            <p>{copy.description}</p>
             <a className="button button--primary" href="#branch-search">
-              Cari Cabang
+              {copy.ctaLabel}
             </a>
           </div>
         </div>

@@ -57,28 +57,37 @@ export function calculatePackageCombination(
 export function formatPackageRecommendation(
   combination: PackageCombination,
   config: PaintClassConfig,
+  labels = {
+    pail: "Pail",
+    gallon: "Galon",
+    zeroGallons: "0 Galon",
+  },
 ) {
   const parts: string[] = [];
 
   if (combination.pailCount > 0) {
-    parts.push(`${combination.pailCount} Pail ${formatSize(config.pailSize)} ${config.pailUnit}`);
+    parts.push(
+      `${combination.pailCount} ${labels.pail} ${formatSize(config.pailSize)} ${config.pailUnit}`,
+    );
   }
 
   if (combination.remainingGallons > 0) {
     parts.push(
-      `${combination.remainingGallons} Galon ${formatSize(config.gallonSize)} ${config.gallonUnit}`,
+      `${combination.remainingGallons} ${labels.gallon} ${formatSize(config.gallonSize)} ${
+        config.gallonUnit
+      }`,
     );
   }
 
-  return parts.length > 0 ? parts.join(" + ") : "0 Galon";
+  return parts.length > 0 ? parts.join(" + ") : labels.zeroGallons;
 }
 
 export function formatArea(value: number) {
   return `${formatDecimal(value)} m²`;
 }
 
-export function formatGallons(value: number) {
-  return `${formatDecimal(value)} galon`;
+export function formatGallons(value: number, label = "galon") {
+  return `${formatDecimal(value)} ${label}`;
 }
 
 function sanitizeMeasurement(value: number) {

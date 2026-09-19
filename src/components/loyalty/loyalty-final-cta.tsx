@@ -1,8 +1,12 @@
 import { loyaltyFinalCta } from "@/data/loyalty";
 import { ActionLink } from "@/components/ui/action-link";
 
-export function LoyaltyFinalCta() {
-  const Icon = loyaltyFinalCta.icon;
+type LoyaltyFinalCtaProps = {
+  copy?: typeof loyaltyFinalCta;
+};
+
+export function LoyaltyFinalCta({ copy = loyaltyFinalCta }: LoyaltyFinalCtaProps) {
+  const Icon = copy.icon;
 
   return (
     <section className="section loyalty-final-cta" aria-labelledby="loyalty-final-title">
@@ -11,13 +15,13 @@ export function LoyaltyFinalCta() {
           <Icon />
         </span>
         <div>
-          <h2 id="loyalty-final-title">{loyaltyFinalCta.title}</h2>
-          <p>{loyaltyFinalCta.description}</p>
+          <h2 id="loyalty-final-title">{copy.title}</h2>
+          <p>{copy.description}</p>
         </div>
         <div className="loyalty-final-cta__actions">
-          <ActionLink href={loyaltyFinalCta.primaryHref}>{loyaltyFinalCta.primaryLabel}</ActionLink>
-          <ActionLink href={loyaltyFinalCta.secondaryHref} variant="secondary">
-            {loyaltyFinalCta.secondaryLabel}
+          <ActionLink href={copy.primaryHref}>{copy.primaryLabel}</ActionLink>
+          <ActionLink href={copy.secondaryHref} variant="secondary">
+            {copy.secondaryLabel}
           </ActionLink>
         </div>
       </div>

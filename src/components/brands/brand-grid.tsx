@@ -1,15 +1,23 @@
 import Image from "next/image";
 import { brands, brandsIntroduction } from "@/data/brands";
 
-export function BrandGrid() {
+type BrandGridProps = {
+  introduction?: typeof brandsIntroduction;
+  ariaLabel?: string;
+};
+
+export function BrandGrid({
+  introduction = brandsIntroduction,
+  ariaLabel = "Daftar merek tersedia",
+}: BrandGridProps) {
   return (
     <section className="section brand-portfolio" aria-labelledby="brand-portfolio-title">
       <div className="container">
         <div className="brand-portfolio__introduction">
-          <h2 id="brand-portfolio-title">{brandsIntroduction.title}</h2>
-          <p>{brandsIntroduction.description}</p>
+          <h2 id="brand-portfolio-title">{introduction.title}</h2>
+          <p>{introduction.description}</p>
         </div>
-        <ul className="brand-grid" aria-label="Daftar merek tersedia">
+        <ul className="brand-grid" aria-label={ariaLabel}>
           {brands.map((brand) => (
             <li className={`brand-card${brand.featured ? " brand-card--featured" : ""}`} key={brand.name}>
               <Image
