@@ -145,7 +145,7 @@ function DesktopNavigationItem({
   return (
     <div
       className="site-header__nav-group"
-      data-align={item.href === "/lokasi-toko" ? "end" : undefined}
+      data-align={item.href.endsWith("/lokasi-toko") ? "end" : undefined}
       data-open={isOpen}
     >
       <button

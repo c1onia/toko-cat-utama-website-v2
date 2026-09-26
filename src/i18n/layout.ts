@@ -1,7 +1,8 @@
 import { brandList } from "@/data/brand-list";
+import { branchNames } from "@/data/branches";
 import { whatsappUrl } from "@/data/site";
 import type { LayoutCopy, Locale } from "@/types/i18n";
-import type { NavigationItem, PrimaryNavigationItem } from "@/types/site";
+import type { NavigationItem, PrimaryNavigationItem, SearchItem } from "@/types/site";
 
 const productCategoryLinks = {
   id: [
@@ -40,6 +41,78 @@ const brandLinks = brandList.map((brand) => ({
   label: brand.name,
   href: "/merek#brand-portfolio-title",
 }));
+
+function localizeHref(locale: Locale, href: string) {
+  if (locale === "id" || href.startsWith("http") || href.startsWith("#")) return href;
+
+  const [path, hash] = href.split("#");
+  const localizedPath = path === "/" ? `/${locale}` : `/${locale}${path}`;
+
+  return hash ? `${localizedPath}#${hash}` : localizedPath;
+}
+
+function localizeItems(locale: Locale, items: NavigationItem[]) {
+  return items.map((item) => ({
+    ...item,
+    href: localizeHref(locale, item.href),
+  }));
+}
+
+function createSearchItems(locale: Locale): SearchItem[] {
+  const categoryItems = productCategoryLinks[locale]
+    .filter((item) => item.href.includes("#"))
+    .map((item) => ({
+      label: item.label,
+      type: "Kategori" as const,
+      href: localizeHref(locale, item.href),
+      keywords: `${item.label} product produk cat coating waterproofing paint 涂料 产品 防水`,
+    }));
+
+  const locationItems = branchNames.map((branch) => ({
+    label: locale === "zh" ? `${branch} 分店` : locale === "en" ? `${branch} Store` : `Toko ${branch}`,
+    type: "Lokasi" as const,
+    href: localizeHref(locale, "/lokasi-toko"),
+    keywords: `${branch} branch store location cabang alamat toko lokasi 门店 位置 地址`,
+  }));
+
+  const pageLabels = {
+    id: {
+      brands: "Halaman Merek",
+      calculator: "Kalkulator Cat",
+      brandsKeywords: "merek brand",
+      calculatorKeywords: "kalkulator cat tembok kebutuhan galon pail ruangan dinding",
+    },
+    en: {
+      brands: "Brands Page",
+      calculator: "Paint Calculator",
+      brandsKeywords: "brands paint products",
+      calculatorKeywords: "paint calculator wall paint gallons pail room wall",
+    },
+    zh: {
+      brands: "品牌页面",
+      calculator: "涂料计算器",
+      brandsKeywords: "品牌 涂料 产品 brand",
+      calculatorKeywords: "涂料计算器 墙面漆 加仑 桶 房间 墙面",
+    },
+  }[locale];
+
+  return [
+    ...categoryItems,
+    ...locationItems,
+    {
+      label: pageLabels.brands,
+      type: "Halaman",
+      href: localizeHref(locale, "/merek"),
+      keywords: pageLabels.brandsKeywords,
+    },
+    {
+      label: pageLabels.calculator,
+      type: "Halaman",
+      href: localizeHref(locale, "/kalkulator-cat"),
+      keywords: pageLabels.calculatorKeywords,
+    },
+  ];
+}
 
 function createNavigation(locale: Locale): PrimaryNavigationItem[] {
   const homeHref = locale === "id" ? "/" : `/${locale}`;
@@ -117,47 +190,47 @@ function createNavigation(locale: Locale): PrimaryNavigationItem[] {
           items: [
             { label: labels.aboutCompany, href: aboutHref },
             { label: labels.whyChooseUs, href: whyChooseUsHref },
-            { label: labels.loyalty, href: "/loyalty-member" },
+            { label: labels.loyalty, href: localizeHref(locale, "/loyalty-member") },
           ],
         },
       ],
     },
     {
       label: labels.products,
-      href: "/produk",
+      href: localizeHref(locale, "/produk"),
       sections: [
         {
           title: labels.category,
-          items: productCategoryLinks[locale],
+          items: localizeItems(locale, productCategoryLinks[locale]),
         },
         {
           title: labels.brand,
-          items: [{ label: labels.allBrands, href: "/merek" }, ...brandLinks],
+          items: localizeItems(locale, [{ label: labels.allBrands, href: "/merek" }, ...brandLinks]),
         },
       ],
     },
     {
       label: labels.solutions,
-      href: "/kalkulator-cat",
+      href: localizeHref(locale, "/kalkulator-cat"),
       sections: [
         {
           title: labels.solutions,
           items: [
-            { label: labels.calculator, href: "/kalkulator-cat" },
-            { label: labels.gallery, href: "/galeri-proyek" },
+            { label: labels.calculator, href: localizeHref(locale, "/kalkulator-cat") },
+            { label: labels.gallery, href: localizeHref(locale, "/galeri-proyek") },
           ],
         },
       ],
     },
     {
       label: labels.branchesContact,
-      href: "/lokasi-toko",
+      href: localizeHref(locale, "/lokasi-toko"),
       sections: [
         {
           title: labels.branchesContact,
           items: [
-            { label: labels.storeLocations, href: "/lokasi-toko" },
-            { label: labels.contactUs, href: "/kontak" },
+            { label: labels.storeLocations, href: localizeHref(locale, "/lokasi-toko") },
+            { label: labels.contactUs, href: localizeHref(locale, "/kontak") },
             { label: labels.whatsapp, href: whatsappUrl },
           ],
         },
@@ -187,6 +260,7 @@ export const layoutCopy: Record<Locale, LayoutCopy> = {
       clearLabel: "Hapus pencarian",
       resultsLabel: "Hasil pencarian",
       emptyState: "Tidak ada hasil yang sesuai.",
+      items: createSearchItems("id"),
       typeLabels: {
         Kategori: "Kategori",
         Lokasi: "Lokasi",
@@ -230,6 +304,7 @@ export const layoutCopy: Record<Locale, LayoutCopy> = {
       clearLabel: "Clear search",
       resultsLabel: "Search results",
       emptyState: "No matching results.",
+      items: createSearchItems("en"),
       typeLabels: {
         Kategori: "Category",
         Lokasi: "Location",
@@ -249,13 +324,13 @@ export const layoutCopy: Record<Locale, LayoutCopy> = {
       navigation: [
         { label: "Home", href: "/en" },
         { label: "About Us", href: "/en/tentang-kami" },
-        { label: "Products", href: "/produk" },
-        { label: "Paint Calculator", href: "/kalkulator-cat" },
-        { label: "Brands", href: "/merek" },
-        { label: "Loyalty Member", href: "/loyalty-member" },
-        { label: "Project Gallery", href: "/galeri-proyek" },
-        { label: "Store Locations", href: "/lokasi-toko" },
-        { label: "Contact", href: "/kontak" },
+        { label: "Products", href: "/en/produk" },
+        { label: "Paint Calculator", href: "/en/kalkulator-cat" },
+        { label: "Brands", href: "/en/merek" },
+        { label: "Loyalty Member", href: "/en/loyalty-member" },
+        { label: "Project Gallery", href: "/en/galeri-proyek" },
+        { label: "Store Locations", href: "/en/lokasi-toko" },
+        { label: "Contact", href: "/en/kontak" },
       ],
     },
   },
@@ -273,6 +348,7 @@ export const layoutCopy: Record<Locale, LayoutCopy> = {
       clearLabel: "清除搜索",
       resultsLabel: "搜索结果",
       emptyState: "没有匹配的结果。",
+      items: createSearchItems("zh"),
       typeLabels: {
         Kategori: "分类",
         Lokasi: "位置",
@@ -292,13 +368,13 @@ export const layoutCopy: Record<Locale, LayoutCopy> = {
       navigation: [
         { label: "首页", href: "/zh" },
         { label: "关于我们", href: "/zh/tentang-kami" },
-        { label: "产品", href: "/produk" },
-        { label: "涂料计算器", href: "/kalkulator-cat" },
-        { label: "品牌", href: "/merek" },
-        { label: "会员计划", href: "/loyalty-member" },
-        { label: "项目图库", href: "/galeri-proyek" },
-        { label: "门店位置", href: "/lokasi-toko" },
-        { label: "联系", href: "/kontak" },
+        { label: "产品", href: "/zh/produk" },
+        { label: "涂料计算器", href: "/zh/kalkulator-cat" },
+        { label: "品牌", href: "/zh/merek" },
+        { label: "会员计划", href: "/zh/loyalty-member" },
+        { label: "项目图库", href: "/zh/galeri-proyek" },
+        { label: "门店位置", href: "/zh/lokasi-toko" },
+        { label: "联系", href: "/zh/kontak" },
       ],
     },
   },

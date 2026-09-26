@@ -1,4 +1,4 @@
-import type { CategoryItem, FeatureItem, NavigationItem, PrimaryNavigationItem } from "@/types/site";
+import type { CategoryItem, FeatureItem, NavigationItem, PrimaryNavigationItem, SearchItem } from "@/types/site";
 
 export type Locale = "id" | "en" | "zh";
 
@@ -8,6 +8,7 @@ export type SearchCopy = {
   clearLabel: string;
   resultsLabel: string;
   emptyState: string;
+  items?: SearchItem[];
   typeLabels: {
     Kategori: string;
     Lokasi: string;
@@ -64,6 +65,7 @@ export type LocationCopy = {
   title: string;
   branchCountLabel: string;
   cta: string;
+  href: string;
 };
 
 export type ContactCopy = {

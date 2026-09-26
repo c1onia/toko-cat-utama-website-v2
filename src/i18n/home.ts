@@ -140,6 +140,7 @@ export const homeCopy: Record<Locale, HomeCopy> = {
       title: "Lokasi Toko",
       branchCountLabel: "cabang di Jawa Tengah",
       cta: "Cari Cabang",
+      href: "/lokasi-toko",
     },
     contact: {
       eyebrow: "Kontak",
@@ -175,6 +176,7 @@ export const homeCopy: Record<Locale, HomeCopy> = {
       title: "Store Locations",
       branchCountLabel: "branches across Central Java",
       cta: "Find a Branch",
+      href: "/en/lokasi-toko",
     },
     contact: {
       eyebrow: "Contact",
@@ -210,6 +212,7 @@ export const homeCopy: Record<Locale, HomeCopy> = {
       title: "门店位置",
       branchCountLabel: "家分店遍布中爪哇",
       cta: "查找分店",
+      href: "/zh/lokasi-toko",
     },
     contact: {
       eyebrow: "联系方式",

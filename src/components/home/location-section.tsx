@@ -20,7 +20,7 @@ export function LocationSection({ copy = homeCopy.id.location }: LocationSection
             <strong>{branches.length}</strong>
             <span>{copy.branchCountLabel}</span>
           </div>
-          <ActionLink href="/lokasi-toko">
+          <ActionLink href={copy.href}>
             <MapPin aria-hidden="true" size={20} />
             {copy.cta}
           </ActionLink>

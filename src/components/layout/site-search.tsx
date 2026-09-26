@@ -18,10 +18,10 @@ export function SiteSearch({ copy = layoutCopy.id.search }: SiteSearchProps) {
   const results = useMemo(() => {
     if (!normalizedQuery) return [];
 
-    return searchItems
+    return (copy.items ?? searchItems)
       .filter((item) => `${item.label} ${item.keywords}`.toLocaleLowerCase("id-ID").includes(normalizedQuery))
       .slice(0, 6);
-  }, [normalizedQuery]);
+  }, [copy.items, normalizedQuery]);
 
   return (
     <div className="site-search">
