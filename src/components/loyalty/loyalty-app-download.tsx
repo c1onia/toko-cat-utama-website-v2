@@ -1,12 +1,22 @@
 import { loyaltyApp } from "@/data/loyalty";
 
-export function LoyaltyAppDownload() {
-  const Icon = loyaltyApp.icon;
+type LoyaltyAppDownloadProps = {
+  copy?: typeof loyaltyApp;
+  eyebrow?: string;
+  actionsLabel?: string;
+};
+
+export function LoyaltyAppDownload({
+  copy = loyaltyApp,
+  eyebrow = "Utama Loyalty App",
+  actionsLabel = "Unduh aplikasi Utama Loyalty",
+}: LoyaltyAppDownloadProps) {
+  const Icon = copy.icon;
 
   return (
     <section
       className="section section--blue loyalty-app"
-      id={loyaltyApp.id}
+      id={copy.id}
       aria-labelledby="loyalty-app-title"
     >
       <div className="container loyalty-app__inner">
@@ -14,12 +24,12 @@ export function LoyaltyAppDownload() {
           <Icon />
         </span>
         <div>
-          <p className="eyebrow">Utama Loyalty App</p>
-          <h2 id="loyalty-app-title">{loyaltyApp.title}</h2>
-          <p>{loyaltyApp.description}</p>
+          <p className="eyebrow">{eyebrow}</p>
+          <h2 id="loyalty-app-title">{copy.title}</h2>
+          <p>{copy.description}</p>
         </div>
-        <div className="loyalty-app__actions" aria-label="Unduh aplikasi Utama Loyalty">
-          {loyaltyApp.links.map((link) => (
+        <div className="loyalty-app__actions" aria-label={actionsLabel}>
+          {copy.links.map((link) => (
             <a
               className="button button--light"
               href={link.href}

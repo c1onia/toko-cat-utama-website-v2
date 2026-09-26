@@ -1,17 +1,6 @@
-import { CategoriesSection } from "@/components/home/categories-section";
-import { ContactSection } from "@/components/home/contact-section";
-import { HeroSection } from "@/components/home/hero-section";
-import { LocationSection } from "@/components/home/location-section";
-import { TrustSection } from "@/components/home/trust-section";
+import { HomePage } from "@/components/home/home-page";
+import { homeCopy } from "@/i18n/home";
 
-export default function HomePage() {
-  return (
-    <main id="main-content">
-      <HeroSection />
-      <TrustSection />
-      <CategoriesSection />
-      <LocationSection />
-      <ContactSection />
-    </main>
-  );
+export default function Page() {
+  return <HomePage copy={homeCopy.id} />;
 }

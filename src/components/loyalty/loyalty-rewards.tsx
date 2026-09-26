@@ -2,20 +2,30 @@ import { loyaltyRewardGroups, loyaltyRewards } from "@/data/loyalty";
 
 const pointsFormatter = new Intl.NumberFormat("id-ID");
 
-export function LoyaltyRewards() {
+type LoyaltyRewardsProps = {
+  section?: typeof loyaltyRewards;
+  groups?: typeof loyaltyRewardGroups;
+  pointsLabel?: string;
+};
+
+export function LoyaltyRewards({
+  section = loyaltyRewards,
+  groups = loyaltyRewardGroups,
+  pointsLabel = "poin",
+}: LoyaltyRewardsProps) {
   return (
     <section
       className="section loyalty-rewards"
-      id={loyaltyRewards.id}
+      id={section.id}
       aria-labelledby="loyalty-rewards-title"
     >
       <div className="container">
         <div className="section-heading">
-          <p className="eyebrow">{loyaltyRewards.eyebrow}</p>
-          <h2 id="loyalty-rewards-title">{loyaltyRewards.title}</h2>
+          <p className="eyebrow">{section.eyebrow}</p>
+          <h2 id="loyalty-rewards-title">{section.title}</h2>
         </div>
         <div className="loyalty-reward-groups">
-          {loyaltyRewardGroups.map((group) => {
+          {groups.map((group) => {
             const Icon = group.icon;
 
             return (
@@ -33,7 +43,9 @@ export function LoyaltyRewards() {
                   {group.rewards.map((reward) => (
                     <li key={reward.name}>
                       <span>{reward.name}</span>
-                      <strong>{pointsFormatter.format(reward.points)} poin</strong>
+                      <strong>
+                        {pointsFormatter.format(reward.points)} {pointsLabel}
+                      </strong>
                     </li>
                   ))}
                 </ul>

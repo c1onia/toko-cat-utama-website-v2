@@ -4,9 +4,42 @@ import type { OpeningEntry, OpeningType } from "@/types/paintCalculator";
 type OpeningsEditorProps = {
   openings: OpeningEntry[];
   onChange: (openings: OpeningEntry[]) => void;
+  copy?: {
+    step: string;
+    title: string;
+    description: string;
+    door: string;
+    window: string;
+    doorEmpty: string;
+    windowEmpty: string;
+    addPrefix: string;
+    width: string;
+    height: string;
+    quantity: string;
+    unit: string;
+    remove: string;
+  };
 };
 
-export function OpeningsEditor({ openings, onChange }: OpeningsEditorProps) {
+export function OpeningsEditor({
+  openings,
+  onChange,
+  copy = {
+    step: "3",
+    title: "Kurangi pintu dan jendela",
+    description: "Tambahkan bukaan hanya jika area tersebut tidak perlu dicat.",
+    door: "Pintu",
+    window: "Jendela",
+    doorEmpty: "Belum ada pintu yang dikurangi.",
+    windowEmpty: "Belum ada jendela yang dikurangi.",
+    addPrefix: "Tambah",
+    width: "Lebar",
+    height: "Tinggi",
+    quantity: "Jumlah",
+    unit: "unit",
+    remove: "Hapus",
+  },
+}: OpeningsEditorProps) {
   const doors = openings.filter((opening) => opening.type === "door");
   const windows = openings.filter((opening) => opening.type === "window");
 
@@ -35,29 +68,31 @@ export function OpeningsEditor({ openings, onChange }: OpeningsEditorProps) {
   return (
     <section className="calculator-panel" aria-labelledby="openings-title">
       <div className="calculator-panel__heading">
-        <span className="calculator-step">3</span>
+        <span className="calculator-step">{copy.step}</span>
         <div>
-          <h2 id="openings-title">Kurangi pintu dan jendela</h2>
-          <p>Tambahkan bukaan hanya jika area tersebut tidak perlu dicat.</p>
+          <h2 id="openings-title">{copy.title}</h2>
+          <p>{copy.description}</p>
         </div>
       </div>
 
       <OpeningGroup
-        title="Pintu"
-        emptyText="Belum ada pintu yang dikurangi."
+        title={copy.door}
+        emptyText={copy.doorEmpty}
         entries={doors}
         onAdd={() => addOpening("door")}
         onUpdate={updateOpening}
         onRemove={removeOpening}
+        copy={copy}
       />
 
       <OpeningGroup
-        title="Jendela"
-        emptyText="Belum ada jendela yang dikurangi."
+        title={copy.window}
+        emptyText={copy.windowEmpty}
         entries={windows}
         onAdd={() => addOpening("window")}
         onUpdate={updateOpening}
         onRemove={removeOpening}
+        copy={copy}
       />
     </section>
   );
@@ -70,15 +105,24 @@ type OpeningGroupProps = {
   onAdd: () => void;
   onUpdate: (id: string, patch: Partial<OpeningEntry>) => void;
   onRemove: (id: string) => void;
+  copy: NonNullable<OpeningsEditorProps["copy"]>;
 };
 
-function OpeningGroup({ title, emptyText, entries, onAdd, onUpdate, onRemove }: OpeningGroupProps) {
+function OpeningGroup({
+  title,
+  emptyText,
+  entries,
+  onAdd,
+  onUpdate,
+  onRemove,
+  copy,
+}: OpeningGroupProps) {
   return (
     <div className="opening-group">
       <div className="opening-group__header">
         <h3>{title}</h3>
         <button className="button button--secondary" type="button" onClick={onAdd}>
-          Tambah {title.toLowerCase()}
+          {copy.addPrefix} {title.toLowerCase()}
         </button>
       </div>
 
@@ -92,6 +136,7 @@ function OpeningGroup({ title, emptyText, entries, onAdd, onUpdate, onRemove }: 
               title={title}
               onUpdate={onUpdate}
               onRemove={onRemove}
+              copy={copy}
             />
           ))}
         </div>
@@ -108,16 +153,17 @@ type OpeningRowProps = {
   title: string;
   onUpdate: (id: string, patch: Partial<OpeningEntry>) => void;
   onRemove: (id: string) => void;
+  copy: NonNullable<OpeningsEditorProps["copy"]>;
 };
 
-function OpeningRow({ entry, index, title, onUpdate, onRemove }: OpeningRowProps) {
+function OpeningRow({ entry, index, title, onUpdate, onRemove, copy }: OpeningRowProps) {
   return (
     <div className="opening-row">
       <strong>
         {title} {index + 1}
       </strong>
       <OpeningField
-        label="Lebar"
+        label={copy.width}
         value={entry.width}
         min="0"
         step="0.1"
@@ -125,7 +171,7 @@ function OpeningRow({ entry, index, title, onUpdate, onRemove }: OpeningRowProps
         onChange={(width) => onUpdate(entry.id, { width })}
       />
       <OpeningField
-        label="Tinggi"
+        label={copy.height}
         value={entry.height}
         min="0"
         step="0.1"
@@ -133,15 +179,15 @@ function OpeningRow({ entry, index, title, onUpdate, onRemove }: OpeningRowProps
         onChange={(height) => onUpdate(entry.id, { height })}
       />
       <OpeningField
-        label="Jumlah"
+        label={copy.quantity}
         value={entry.quantity}
         min="1"
         step="1"
-        unit="unit"
+        unit={copy.unit}
         onChange={(quantity) => onUpdate(entry.id, { quantity })}
       />
       <button className="opening-row__remove" type="button" onClick={() => onRemove(entry.id)}>
-        Hapus
+        {copy.remove}
       </button>
     </div>
   );

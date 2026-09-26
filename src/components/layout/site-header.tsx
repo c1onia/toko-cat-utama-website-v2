@@ -5,7 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, MessageCircle, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { navigation, whatsappUrl } from "@/data/site";
+import { whatsappUrl } from "@/data/site";
+import { getLocaleFromPathname, layoutCopy } from "@/i18n/layout";
 import { SiteSearch } from "@/components/layout/site-search";
 import type { NavigationItem, PrimaryNavigationItem } from "@/types/site";
 
@@ -15,6 +16,8 @@ export function SiteHeader() {
   const [openMobileGroup, setOpenMobileGroup] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
+  const locale = getLocaleFromPathname(pathname);
+  const copy = layoutCopy[locale];
 
   useEffect(() => {
     function closeOnOutsideClick(event: MouseEvent) {
@@ -49,12 +52,12 @@ export function SiteHeader() {
   return (
     <header className="site-header" ref={headerRef}>
       <div className="container site-header__inner">
-        <Link className="site-header__logo" href="/" aria-label="Toko Cat Utama - Beranda">
+        <Link className="site-header__logo" href={locale === "id" ? "/" : `/${locale}`} aria-label={copy.logoAriaLabel}>
           <Image src="/brand/logo-primary.png" alt="Toko Cat Utama" width={240} height={137} priority />
         </Link>
 
-        <nav className="site-header__desktop-nav" aria-label="Navigasi utama">
-          {navigation.map((item) => (
+        <nav className="site-header__desktop-nav" aria-label={copy.desktopNavAriaLabel}>
+          {copy.navigation.map((item) => (
             <DesktopNavigationItem
               item={item}
               isActive={isNavigationItemActive(item, pathname)}
@@ -69,17 +72,17 @@ export function SiteHeader() {
         </nav>
 
         <div className="site-header__actions">
-          <SiteSearch />
+          <SiteSearch copy={copy.search} />
           <a className="button button--primary site-header__cta" href={whatsappUrl} target="_blank" rel="noreferrer">
             <MessageCircle aria-hidden="true" size={20} />
-            Hubungi Kami
+            {copy.contactCta}
           </a>
           <button
             className="site-header__menu-button"
             type="button"
             aria-expanded={isOpen}
             aria-controls="mobile-navigation"
-            aria-label={isOpen ? "Tutup menu" : "Buka menu"}
+            aria-label={isOpen ? copy.closeMenuLabel : copy.openMenuLabel}
             onClick={() => setIsOpen((current) => !current)}
           >
             {isOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
@@ -90,9 +93,9 @@ export function SiteHeader() {
       {isOpen ? (
         <div className="site-header__mobile-panel" id="mobile-navigation">
           <div className="container">
-            <SiteSearch />
-            <nav aria-label="Navigasi mobile">
-              {navigation.map((item) => (
+            <SiteSearch copy={copy.search} />
+            <nav aria-label={copy.mobileNavAriaLabel}>
+              {copy.navigation.map((item) => (
                 <MobileNavigationItem
                   item={item}
                   isActive={isNavigationItemActive(item, pathname)}
@@ -107,7 +110,7 @@ export function SiteHeader() {
             </nav>
             <a className="button button--primary" href={whatsappUrl} target="_blank" rel="noreferrer">
               <MessageCircle aria-hidden="true" size={20} />
-              Hubungi Kami
+              {copy.contactCta}
             </a>
           </div>
         </div>
@@ -142,7 +145,7 @@ function DesktopNavigationItem({
   return (
     <div
       className="site-header__nav-group"
-      data-align={item.label === "Cabang & Kontak" ? "end" : undefined}
+      data-align={item.href.endsWith("/lokasi-toko") ? "end" : undefined}
       data-open={isOpen}
     >
       <button

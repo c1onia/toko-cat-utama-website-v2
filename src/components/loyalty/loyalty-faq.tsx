@@ -1,15 +1,20 @@
 import { loyaltyFaqSection, loyaltyFaqs } from "@/data/loyalty";
 
-export function LoyaltyFaq() {
+type LoyaltyFaqProps = {
+  section?: typeof loyaltyFaqSection;
+  faqs?: typeof loyaltyFaqs;
+};
+
+export function LoyaltyFaq({ section = loyaltyFaqSection, faqs = loyaltyFaqs }: LoyaltyFaqProps) {
   return (
     <section className="section section--light loyalty-faq" aria-labelledby="loyalty-faq-title">
       <div className="container loyalty-faq__inner">
         <div className="section-heading">
-          <p className="eyebrow">{loyaltyFaqSection.eyebrow}</p>
-          <h2 id="loyalty-faq-title">{loyaltyFaqSection.title}</h2>
+          <p className="eyebrow">{section.eyebrow}</p>
+          <h2 id="loyalty-faq-title">{section.title}</h2>
         </div>
         <div className="loyalty-faq__list">
-          {loyaltyFaqs.map((item) => (
+          {faqs.map((item) => (
             <details className="loyalty-faq__item" key={item.question}>
               <summary>{item.question}</summary>
               <p>{item.answer}</p>

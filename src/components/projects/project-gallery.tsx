@@ -3,18 +3,27 @@ import { ProjectCard } from "@/components/projects/project-card";
 
 type ProjectGalleryProps = {
   projects: Project[];
+  copy?: {
+    eyebrow: string;
+    title: string;
+    description: string;
+  };
 };
 
-export function ProjectGallery({ projects }: ProjectGalleryProps) {
+const defaultCopy = {
+  eyebrow: "Dokumentasi Proyek",
+  title: "Proyek Terdokumentasi",
+  description: "Foto proyek berikut menggunakan dokumentasi asli yang tersedia dari Toko Cat Utama.",
+};
+
+export function ProjectGallery({ projects, copy = defaultCopy }: ProjectGalleryProps) {
   return (
     <section className="section project-gallery" aria-labelledby="project-gallery-title">
       <div className="container">
         <div className="section-heading">
-          <p className="eyebrow">Dokumentasi Proyek</p>
-          <h2 id="project-gallery-title">Proyek Terdokumentasi</h2>
-          <p>
-            Foto proyek berikut menggunakan dokumentasi asli yang tersedia dari Toko Cat Utama.
-          </p>
+          <p className="eyebrow">{copy.eyebrow}</p>
+          <h2 id="project-gallery-title">{copy.title}</h2>
+          <p>{copy.description}</p>
         </div>
 
         <div className="project-gallery__grid">

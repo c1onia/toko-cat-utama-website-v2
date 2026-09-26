@@ -1,13 +1,6 @@
 import type { Metadata } from "next";
-import { LoyaltyAppDownload } from "@/components/loyalty/loyalty-app-download";
-import { LoyaltyFaq } from "@/components/loyalty/loyalty-faq";
-import { LoyaltyFinalCta } from "@/components/loyalty/loyalty-final-cta";
-import { LoyaltyHero } from "@/components/loyalty/loyalty-hero";
-import { LoyaltyHighlights } from "@/components/loyalty/loyalty-highlights";
-import { LoyaltyPointConversion } from "@/components/loyalty/loyalty-point-conversion";
-import { LoyaltyRegistration } from "@/components/loyalty/loyalty-registration";
-import { LoyaltyRewards } from "@/components/loyalty/loyalty-rewards";
-import { LoyaltySteps } from "@/components/loyalty/loyalty-steps";
+import { LoyaltyPage as LoyaltyPageTemplate } from "@/components/loyalty/loyalty-page";
+import { loyaltyCopy } from "@/i18n/loyalty";
 import "@/styles/loyalty.css";
 
 export const metadata: Metadata = {
@@ -17,17 +10,5 @@ export const metadata: Metadata = {
 };
 
 export default function LoyaltyMemberPage() {
-  return (
-    <main id="main-content">
-      <LoyaltyHero />
-      <LoyaltyHighlights />
-      <LoyaltySteps />
-      <LoyaltyPointConversion />
-      <LoyaltyRewards />
-      <LoyaltyAppDownload />
-      <LoyaltyRegistration />
-      <LoyaltyFaq />
-      <LoyaltyFinalCta />
-    </main>
-  );
+  return <LoyaltyPageTemplate copy={loyaltyCopy.id} />;
 }

@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import { LocationHero } from "@/components/locations/LocationHero";
-import { LocationSearch } from "@/components/locations/LocationSearch";
-import { branches } from "@/data/branches";
+import { LocationsPage as LocationsPageTemplate } from "@/components/locations/locations-page";
 import "@/styles/locations.css";
 
 export const metadata: Metadata = {
@@ -11,10 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function LocationsPage() {
-  return (
-    <main id="main-content">
-      <LocationHero />
-      <LocationSearch branches={branches} />
-    </main>
-  );
+  return <LocationsPageTemplate locale="id" />;
 }

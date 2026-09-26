@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { BrandGrid } from "@/components/brands/brand-grid";
-import { BrandTrustSection } from "@/components/brands/brand-trust-section";
-import { BrandsCta } from "@/components/brands/brands-cta";
-import { BrandsHero } from "@/components/brands/brands-hero";
+import { BrandsPage as BrandsPageTemplate } from "@/components/brands/brands-page";
+import { brandsCopy } from "@/i18n/brands";
 import "@/styles/brands.css";
 
 export const metadata: Metadata = {
@@ -12,12 +10,5 @@ export const metadata: Metadata = {
 };
 
 export default function BrandsPage() {
-  return (
-    <main id="main-content">
-      <BrandsHero />
-      <BrandGrid />
-      <BrandTrustSection />
-      <BrandsCta />
-    </main>
-  );
+  return <BrandsPageTemplate copy={brandsCopy.id} />;
 }

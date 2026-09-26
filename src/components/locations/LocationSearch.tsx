@@ -1,13 +1,16 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { locationsCopy } from "@/i18n/locations";
 import type { Branch } from "@/types/branch";
+import type { Locale } from "@/types/i18n";
 import { BranchGroup } from "./BranchGroup";
 import { CityFilter } from "./CityFilter";
 import { EmptyState } from "./EmptyState";
 
 type LocationSearchProps = {
   branches: Branch[];
+  locale?: Locale;
 };
 
 function normalize(value: string) {
@@ -25,7 +28,11 @@ function groupByCity(items: Branch[]) {
   }, {});
 }
 
-export function LocationSearch({ branches }: LocationSearchProps) {
+export function LocationSearch({
+  branches,
+  locale = "id",
+}: LocationSearchProps) {
+  const copy = locationsCopy[locale].search;
   const [query, setQuery] = useState("");
   const [city, setCity] = useState("");
 
@@ -58,26 +65,29 @@ export function LocationSearch({ branches }: LocationSearchProps) {
     <section className="section section--light location-directory" id="branch-search">
       <div className="container">
         <div className="location-directory__intro">
-          <p className="eyebrow">Cari Cabang</p>
-          <h2>Lokasi Toko Cat Utama</h2>
-          <p>
-            Gunakan nama cabang, kota, atau alamat untuk menemukan toko yang
-            paling dekat dengan Anda.
-          </p>
+          <p className="eyebrow">{copy.eyebrow}</p>
+          <h2>{copy.title}</h2>
+          <p>{copy.description}</p>
         </div>
 
         <div className="location-controls">
           <div className="location-search-field">
-            <label htmlFor="branch-query">Cari cabang</label>
+            <label htmlFor="branch-query">{copy.searchLabel}</label>
             <input
               id="branch-query"
               type="search"
-              placeholder="Cari nama toko, kota, alamat, atau merek mesin tinting"
+              placeholder={copy.searchPlaceholder}
               value={query}
               onChange={(event) => setQuery(event.target.value)}
             />
           </div>
-          <CityFilter cities={cities} value={city} onChange={setCity} />
+          <CityFilter
+            cities={cities}
+            value={city}
+            onChange={setCity}
+            label={copy.cityFilterLabel}
+            allCitiesLabel={copy.allCitiesLabel}
+          />
         </div>
 
         {filteredBranches.length ? (
@@ -86,12 +96,14 @@ export function LocationSearch({ branches }: LocationSearchProps) {
               <BranchGroup
                 city={groupCity}
                 branches={groupBranches}
+                branchCountLabel={copy.branchCountLabel}
+                cardCopy={copy.card}
                 key={groupCity}
               />
             ))}
           </div>
         ) : (
-          <EmptyState />
+          <EmptyState title={copy.emptyTitle} description={copy.emptyDescription} />
         )}
       </div>
     </section>

@@ -1,22 +1,28 @@
 import { Building2, MapPin } from "lucide-react";
 import { ActionLink } from "@/components/ui/action-link";
 import { branches } from "@/data/branches";
+import { homeCopy } from "@/i18n/home";
+import type { LocationCopy } from "@/types/i18n";
 
-export function LocationSection() {
+type LocationSectionProps = {
+  copy?: LocationCopy;
+};
+
+export function LocationSection({ copy = homeCopy.id.location }: LocationSectionProps) {
   return (
     <section className="section location" id="lokasi-toko" aria-labelledby="location-title">
       <div className="container location__grid">
         <div className="location__content">
-          <p className="eyebrow">{branches.length} Cabang</p>
-          <h2 id="location-title">Lokasi Toko</h2>
+          <p className="eyebrow">{branches.length} {copy.eyebrowSuffix}</p>
+          <h2 id="location-title">{copy.title}</h2>
           <div className="location__count">
             <Building2 aria-hidden="true" />
             <strong>{branches.length}</strong>
-            <span>cabang di Jawa Tengah</span>
+            <span>{copy.branchCountLabel}</span>
           </div>
-          <ActionLink href="/lokasi-toko">
+          <ActionLink href={copy.href}>
             <MapPin aria-hidden="true" size={20} />
-            Cari Cabang
+            {copy.cta}
           </ActionLink>
         </div>
         <div className="location__graphic" aria-hidden="true">

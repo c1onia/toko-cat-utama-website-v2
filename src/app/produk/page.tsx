@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { ProductCategoryGrid } from "@/components/products/product-category-grid";
-import { ProductCta } from "@/components/products/product-cta";
-import { ProductHelp } from "@/components/products/product-help";
-import { ProductHero } from "@/components/products/product-hero";
+import { ProductsPage as ProductsPageTemplate } from "@/components/products/products-page";
+import { productsCopy } from "@/i18n/products";
 import "@/styles/products.css";
 
 export const metadata: Metadata = {
@@ -12,12 +10,5 @@ export const metadata: Metadata = {
 };
 
 export default function ProductsPage() {
-  return (
-    <main id="main-content">
-      <ProductHero />
-      <ProductCategoryGrid />
-      <ProductHelp />
-      <ProductCta />
-    </main>
-  );
+  return <ProductsPageTemplate copy={productsCopy.id} />;
 }

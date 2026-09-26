@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { OtherProjects } from "@/components/projects/other-projects";
-import { ProjectGallery } from "@/components/projects/project-gallery";
-import { ProjectHero } from "@/components/projects/project-hero";
-import { otherProjects, photographedProjects } from "@/data/projects";
+import { ProjectsPage as ProjectsPageTemplate } from "@/components/projects/projects-page";
+import { projectsCopy } from "@/i18n/projects";
 import "@/styles/projects.css";
 
 export const metadata: Metadata = {
@@ -12,11 +10,5 @@ export const metadata: Metadata = {
 };
 
 export default function ProjectGalleryPage() {
-  return (
-    <main id="main-content">
-      <ProjectHero />
-      <ProjectGallery projects={photographedProjects} />
-      <OtherProjects projects={otherProjects} />
-    </main>
-  );
+  return <ProjectsPageTemplate copy={projectsCopy.id} />;
 }

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { PaintCalculator } from "@/components/paint-calculator/paint-calculator";
-import { paintCalculatorHero } from "@/data/paintCalculator";
+import { PaintCalculatorPage as PaintCalculatorPageTemplate } from "@/components/paint-calculator/paint-calculator-page";
 import "@/styles/paint-calculator.css";
 
 export const metadata: Metadata = {
@@ -10,16 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function PaintCalculatorPage() {
-  return (
-    <main id="main-content">
-      <section className="calculator-hero" aria-labelledby="calculator-title">
-        <div className="container calculator-hero__inner">
-          <p className="eyebrow">{paintCalculatorHero.eyebrow}</p>
-          <h1 id="calculator-title">{paintCalculatorHero.title}</h1>
-          <p>{paintCalculatorHero.description}</p>
-        </div>
-      </section>
-      <PaintCalculator />
-    </main>
-  );
+  return <PaintCalculatorPageTemplate locale="id" />;
 }
