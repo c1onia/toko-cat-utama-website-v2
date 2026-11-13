@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import { MapPin, Phone } from "lucide-react";
 import { ActionLink } from "@/components/ui/action-link";
@@ -5,6 +6,11 @@ import type { Branch } from "@/types/branch";
 import { whatsappHref } from "@/lib/whatsapp";
 import { OpeningHours } from "./OpeningHours";
 import { TintingMachine } from "./TintingMachine";
+
+type OpeningHoursItem = {
+  day: string;
+  time: string;
+};
 
 type BranchCardProps = {
   branch: Branch;
@@ -14,7 +20,10 @@ type BranchCardProps = {
     contactLabel: string;
     openingHoursTitle: string;
     openingHoursAriaLabel: string;
-    openingHoursItems: ReadonlyArray<{ day: string; time: string }>;
+    openingHoursItems: ReadonlyArray<OpeningHoursItem>;
+    openingHoursByBranch?: Readonly<
+      Record<string, ReadonlyArray<OpeningHoursItem>>
+    >;
     tintingTitle: string;
   };
 };
@@ -32,6 +41,14 @@ export function BranchCard({
   },
 }: BranchCardProps) {
   const contactUrl = whatsappHref(branch.whatsapp);
+
+  // Gunakan jadwal khusus apabila tersedia.
+  // Cabang lainnya tetap memakai jadwal standar.
+  const branchOpeningHours =
+    copy.openingHoursByBranch?.[branch.slug] ??
+    (copy.openingHoursItems.length
+      ? copy.openingHoursItems
+      : undefined);
 
   return (
     <article className="branch-card" id={branch.slug}>
@@ -71,9 +88,13 @@ export function BranchCard({
         <OpeningHours
           title={copy.openingHoursTitle}
           ariaLabel={copy.openingHoursAriaLabel}
-          items={copy.openingHoursItems.length ? copy.openingHoursItems : undefined}
+          items={branchOpeningHours}
         />
-        <TintingMachine machines={branch.tintingMachines} title={copy.tintingTitle} />
+
+        <TintingMachine
+          machines={branch.tintingMachines}
+          title={copy.tintingTitle}
+        />
 
         <div className="branch-card__actions">
           {contactUrl && (
@@ -81,8 +102,13 @@ export function BranchCard({
               {copy.contactLabel}
             </ActionLink>
           )}
+
           {branch.googleMaps && (
-            <ActionLink href={branch.googleMaps} variant="secondary" external>
+            <ActionLink
+              href={branch.googleMaps}
+              variant="secondary"
+              external
+            >
               Google Maps
             </ActionLink>
           )}
