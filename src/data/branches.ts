@@ -169,7 +169,7 @@ const branchEntries: BranchEntry[] = [
     phone: "0813-921-6166",
     whatsapp: "0813-921-6166",
     googleMaps: "https://maps.app.goo.gl/hxwnvMb7gQaSoNi5A",
-    image: "",
+    image: "/images/branches/pabelan.jpg",
     tintingMachines:
       "Avian, no drop, lenkote, dulux, danapaint, nippon, pacific paint",
   },
