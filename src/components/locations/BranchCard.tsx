@@ -6,6 +6,14 @@ import { whatsappHref } from "@/lib/whatsapp";
 import { OpeningHours } from "./OpeningHours";
 import { TintingMachine } from "./TintingMachine";
 
+
+const ngaliyanJotunHours = [
+  { day: "Senin–Jumat", time: "08.00–16.00" },
+  { day: "Sabtu", time: "09.00–15.00" },
+  { day: "Minggu", time: "Tutup" },
+] as const;
+
+
 type BranchCardProps = {
   branch: Branch;
   copy?: {
@@ -71,7 +79,15 @@ export function BranchCard({
         <OpeningHours
           title={copy.openingHoursTitle}
           ariaLabel={copy.openingHoursAriaLabel}
-          items={copy.openingHoursItems.length ? copy.openingHoursItems : undefined}
+          
+          items={
+            branch.slug === "ngaliyan-jotun"
+              ? ngaliyanJotunHours
+              : copy.openingHoursItems.length
+                ? copy.openingHoursItems
+                : undefined
+          }
+
         />
         <TintingMachine machines={branch.tintingMachines} title={copy.tintingTitle} />
 
