@@ -43,7 +43,7 @@ export const aboutCopy: Record<Locale, AboutCopy> = {
     hero: {
       title: "Tentang Kami",
       description:
-        "Lebih dari 70 tahun memberikan solusi pengecatan untuk rumah, proyek, dan industri di Jawa Tengah.",
+        "Lebih dari 70 tahun memberikan solusi pengecatan untuk rumah, proyek, dan industri di Indonesia.",
       ...aboutImages.hero,
     },
     companyIntroduction: {
@@ -78,7 +78,7 @@ export const aboutCopy: Record<Locale, AboutCopy> = {
         {
           year: "2026",
           description:
-            `Toko Cat Utama telah berkembang menjadi ${branches.length} cabang yang tersebar di Jawa Tengah.`,
+            `Toko Cat Utama telah berkembang menjadi ${branches.length} cabang yang tersebar di Indonesia.`,
         },
       ],
     },
@@ -143,7 +143,7 @@ export const aboutCopy: Record<Locale, AboutCopy> = {
     hero: {
       title: "About Us",
       description:
-        "For more than 70 years, we have provided painting solutions for homes, projects, and industries across Central Java.",
+        "For more than 70 years, we have provided painting solutions for homes, projects, and industries across Indonesia.",
       ...aboutImages.hero,
       imageAlt: "Toko Cat Utama Setiabudi branch facade with various paint brands",
     },
@@ -180,7 +180,7 @@ export const aboutCopy: Record<Locale, AboutCopy> = {
         {
           year: "2026",
           description:
-            `Toko Cat Utama has grown into ${branches.length} branches across Central Java.`,
+            `Toko Cat Utama has grown into ${branches.length} branches across Indonesia.`,
         },
       ],
     },
@@ -247,7 +247,7 @@ export const aboutCopy: Record<Locale, AboutCopy> = {
     hero: {
       title: "关于我们",
       description:
-        "70多年来，我们为中爪哇的住宅、项目和工业需求提供涂装解决方案。",
+        "70多年来，我们为印度尼西亚的住宅、项目和工业需求提供涂装解决方案。",
       ...aboutImages.hero,
       imageAlt: "Toko Cat Utama Setiabudi 分店外观，展示多个涂料品牌",
     },
@@ -284,7 +284,7 @@ export const aboutCopy: Record<Locale, AboutCopy> = {
         {
           year: "2026",
           description:
-            `Toko Cat Utama 已发展为遍布中爪哇的 ${branches.length} 家分店。`,
+            `Toko Cat Utama 已发展为遍布印度尼西亚的 ${branches.length} 家分店。`,
         },
       ],
     },

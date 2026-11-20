@@ -3,6 +3,7 @@ export interface Branch {
   slug: string;
   name: string;
   city: string;
+  province?: string;
   address: string;
   phone?: string;
   whatsapp?: string;

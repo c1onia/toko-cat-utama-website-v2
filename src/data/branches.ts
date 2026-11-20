@@ -232,6 +232,15 @@ const branchEntries: BranchEntry[] = [
     image: "/images/branches/batang.jpg",
     tintingMachines: "danapaint, nippon, avian, dulux, propan, jotun, indaco",
   },
+  {
+    slug: "bsd",
+    name: "BSD",
+    city: "Tangerang Selatan",
+    province: "Banten",
+    address: "Ruko Golden Vienna, Blok AA No. 5, Tangerang Selatan, Banten 15318",
+    image: "",
+    tintingMachines: "Jotun",
+  },
 ];
 
 export const branches: Branch[] = branchEntries.map((branch) => ({

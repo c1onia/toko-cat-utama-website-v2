@@ -3,7 +3,7 @@ import { branches } from "@/data/branches";
 export const aboutHero = {
   title: "Tentang Kami",
   description:
-    "Lebih dari 70 tahun memberikan solusi pengecatan untuk rumah, proyek, dan industri di Jawa Tengah.",
+    "Lebih dari 70 tahun memberikan solusi pengecatan untuk rumah, proyek, dan industri di Indonesia.",
   image: "/images/about/setiabudi.jpeg",
   imageAlt: "Fasad Toko Cat Utama cabang Setiabudi dengan berbagai merek cat",
 };
@@ -42,7 +42,7 @@ export const historySection = {
     {
       year: "2026",
       description:
-        `Toko Cat Utama telah berkembang menjadi ${branches.length} cabang yang tersebar di Jawa Tengah.`,
+        `Toko Cat Utama telah berkembang menjadi ${branches.length} cabang yang tersebar di Indonesia.`,
     },
   ],
 };

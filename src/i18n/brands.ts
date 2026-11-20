@@ -50,7 +50,7 @@ export const brandsCopy: Record<Locale, BrandsCopy> = {
         return {
           ...item,
           title: copy?.title ?? item.title.replace("Cabang", "Branches"),
-          description: copy?.description ?? "Easy to find across multiple cities in Central Java.",
+          description: copy?.description ?? "Easy to find across multiple cities in Indonesia.",
         };
       }),
     },
@@ -95,7 +95,7 @@ export const brandsCopy: Record<Locale, BrandsCopy> = {
         return {
           ...item,
           title: copy?.title ?? item.title.replace("Cabang", "家分店"),
-          description: copy?.description ?? "在中爪哇多个城市都能方便找到我们。",
+          description: copy?.description ?? "在印度尼西亚多个城市都能方便找到我们。",
         };
       }),
     },

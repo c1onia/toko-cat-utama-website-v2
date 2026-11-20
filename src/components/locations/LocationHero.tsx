@@ -13,7 +13,7 @@ type LocationHeroProps = {
 
 export function LocationHero({
   copy = {
-    eyebrow: `${branches.length} Cabang di Jawa Tengah`,
+    eyebrow: `${branches.length} Cabang di Indonesia`,
     title: "Temukan Toko Cat Utama Terdekat",
     description:
       "Cari cabang berdasarkan nama toko atau kota, kemudian hubungi cabang yang paling sesuai dengan kebutuhan Anda.",
