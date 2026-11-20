@@ -120,10 +120,25 @@ const ngaliyanJotunHours: Record<
   ],
 };
 
+const bsdHours: Record<Locale, ReadonlyArray<OpeningHoursItem>> = {
+  id: [
+    { day: "Senin–Sabtu", time: "08.00–18.00" },
+    { day: "Minggu dan Hari Libur Nasional", time: "08.00–17.00" },
+  ],
+  en: [
+    { day: "Monday – Saturday", time: "08.00–18.00" },
+    { day: "Sunday and National Public Holidays", time: "08.00–17.00" },
+  ],
+  zh: [
+    { day: "周一至周六", time: "08.00–18.00" },
+    { day: "周日及法定节假日", time: "08.00–17.00" },
+  ],
+};
+
 export const locationsCopy: Record<Locale, LocationsCopy> = {
   id: {
     hero: {
-      eyebrow: `${branches.length} Cabang di Jawa Tengah`,
+      eyebrow: `${branches.length} Cabang di Indonesia`,
       title: "Temukan Toko Cat Utama Terdekat",
       description:
         "Cari cabang berdasarkan nama toko atau kota, kemudian hubungi cabang yang paling sesuai dengan kebutuhan Anda.",
@@ -154,9 +169,10 @@ export const locationsCopy: Record<Locale, LocationsCopy> = {
         // Jadwal umum
         openingHoursItems: openingHours,
 
-        // Jadwal khusus Ngaliyan Jotun
+        // Jadwal khusus cabang
         openingHoursByBranch: {
           "ngaliyan-jotun": ngaliyanJotunHours.id,
+          bsd: bsdHours.id,
         },
 
         tintingTitle: "Sistem Tinting Tersedia",
@@ -166,7 +182,7 @@ export const locationsCopy: Record<Locale, LocationsCopy> = {
 
   en: {
     hero: {
-      eyebrow: `${branches.length} Branches in Central Java`,
+      eyebrow: `${branches.length} Branches in Indonesia`,
       title: "Find the Nearest Toko Cat Utama Store",
       description:
         "Search by store name or city, then contact the branch that best fits your needs.",
@@ -198,9 +214,10 @@ export const locationsCopy: Record<Locale, LocationsCopy> = {
         // Default opening hours
         openingHoursItems: localizedOpeningHours("en"),
 
-        // Ngaliyan Jotun specific hours
+        // Branch-specific hours
         openingHoursByBranch: {
           "ngaliyan-jotun": ngaliyanJotunHours.en,
+          bsd: bsdHours.en,
         },
 
         tintingTitle: "Available Tinting Systems",
@@ -210,7 +227,7 @@ export const locationsCopy: Record<Locale, LocationsCopy> = {
 
   zh: {
     hero: {
-      eyebrow: `中爪哇 ${branches.length} 家分店`,
+      eyebrow: `印度尼西亚 ${branches.length} 家分店`,
       title: "查找最近的 Toko Cat Utama 门店",
       description:
         "可按门店名称或城市搜索，并联系最符合您需求的分店。",
@@ -241,9 +258,10 @@ export const locationsCopy: Record<Locale, LocationsCopy> = {
         // 默认营业时间
         openingHoursItems: localizedOpeningHours("zh"),
 
-        // Ngaliyan Jotun 特别营业时间
+        // 分店特别营业时间
         openingHoursByBranch: {
           "ngaliyan-jotun": ngaliyanJotunHours.zh,
+          bsd: bsdHours.zh,
         },
 
         tintingTitle: "可用调色系统",

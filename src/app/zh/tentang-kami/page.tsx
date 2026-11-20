@@ -6,7 +6,7 @@ import "@/styles/about.css";
 export const metadata: Metadata = {
   title: "关于我们 | Toko Cat Utama",
   description:
-    "70多年来，Toko Cat Utama 为中爪哇的住宅、项目和工业需求提供涂装解决方案。",
+    "70多年来，Toko Cat Utama 为印度尼西亚的住宅、项目和工业需求提供涂装解决方案。",
 };
 
 export default function ChineseAboutPage() {

@@ -6,7 +6,7 @@ import "@/styles/about.css";
 export const metadata: Metadata = {
   title: "Tentang Kami | Toko Cat Utama",
   description:
-    "Lebih dari 70 tahun memberikan solusi pengecatan untuk rumah, proyek, dan industri di Jawa Tengah.",
+    "Lebih dari 70 tahun memberikan solusi pengecatan untuk rumah, proyek, dan industri di Indonesia.",
 };
 
 export default function TentangKamiPage() {

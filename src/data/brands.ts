@@ -37,7 +37,7 @@ export const brandTrust = {
     },
     {
       title: `${branches.length} Cabang`,
-      description: "Mudah ditemukan di berbagai kota di Jawa Tengah.",
+      description: "Mudah ditemukan di berbagai kota di Indonesia.",
       icon: MapPin,
     },
   ],

@@ -6,7 +6,7 @@ import "@/styles/about.css";
 export const metadata: Metadata = {
   title: "About Us | Toko Cat Utama",
   description:
-    "For more than 70 years, Toko Cat Utama has provided painting solutions for homes, projects, and industries across Central Java.",
+    "For more than 70 years, Toko Cat Utama has provided painting solutions for homes, projects, and industries across Indonesia.",
 };
 
 export default function EnglishAboutPage() {
