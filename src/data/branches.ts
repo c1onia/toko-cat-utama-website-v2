@@ -239,6 +239,7 @@ const branchEntries: BranchEntry[] = [
     province: "Banten",
     address: "Ruko Golden Vienna, Blok AA No. 5, Tangerang Selatan, Banten 15318",
     image: "",
+    tintingMachines: "Jotun",
   },
 ];
 
